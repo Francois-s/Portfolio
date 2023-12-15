@@ -1,0 +1,153 @@
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  font-family: Arial, sans-serif;
+}
+
+.skills-title h2 {
+  text-align: right;
+}
+
+.title-underline {
+  width: 50%;
+  height: 4px;
+  background-color: #000;
+  margin-bottom: 20px;
+}
+
+.skills-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.desk-image {
+  width: 40%;
+  /* Adjust the size as needed */
+}
+
+.skills-list {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.skill-name {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.skill-icon {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.skill-bar {
+  height: 20px;
+  border-radius: 10px;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.skill-level {
+  min-width: 50px;
+  text-align: right;
+}
+
+/* Existing styles... */
+
+/* ...existing styles... */
+
+
+.skill-progress {
+  background-color: rgb(0, 0, 0);
+  transition: height 0.1s ease-in-out;
+  border-radius: 10px;
+  width: 100%; /* Full width to contain the skill level bar */
+  height: 20px; /* Height of the skill level bar */
+  display: flex;
+}
+
+.skill-level {
+  height: 100%;
+  border-radius: 10px 0 0 10px; /* Rounded left corners */
+  display: flex;
+  align-items: center;
+  color: white;
+  text-align: right;
+  transition: width 1s ease-in-out;
+}
+
+.skill-remaining {
+  height: 100%;
+  background-color: #e0e0e0; /* Color for the remaining part */
+  border-radius: 0 10px 10px 0; /* Rounded right corners */
+}
+
+/* ...remaining styles... */
+
+
+.skill-icon {
+  margin-right: 10px;
+}
+
+
+.skill-percent {
+  padding: 10px;
+}
+/* You might want to add media queries for responsiveness */
+
+.skill-progress:hover {
+  background-color: rgb(4, 126, 4);
+  height: 25px;
+}
+
+
+@keyframes growSkillBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.skill-progress {
+  background-color: #000000;
+  border-radius: 10px;
+  width: 100%; /* Full width to contain the skill level bar */
+  height: 20px; /* Height of the skill level bar */
+  overflow: hidden; /* Assure that the growing bar doesn't exceed the container */
+}
+
+.skill-level {
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  text-align: right;
+  animation: growSkillBar 2s ease; /* Apply the animation */
+}
+
+/* Apply this animation delay to each skill so they don't all animate at once */
+.skill:nth-child(1) .skill-level { animation-delay: 0.2s; }
+.skill:nth-child(2) .skill-level { animation-delay: 0.4s; }
+.skill:nth-child(3) .skill-level { animation-delay: 0.6s; }
+.skill:nth-child(4) .skill-level { animation-delay: 0.8s; }
+.skill:nth-child(5) .skill-level { animation-delay: 1s; }
+.skill:nth-child(6) .skill-level { animation-delay: 1.2s; }
+.skill:nth-child(7) .skill-level { animation-delay: 1.4s; }
+/* Continue for as many skills as you have */
+
+/* ...remaining styles... */
