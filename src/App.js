@@ -5,13 +5,12 @@ import "./App.css"
 
 export function App() {
     return (
-        <Router>
+        <Router basename="/Portfolio">
             <Routes>
                 <Route path="/" element={<Home />} />
             </Routes>
         </Router>
     );
 }
-
 
 export default App;
