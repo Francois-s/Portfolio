@@ -38,14 +38,14 @@ const SkillsComponent = () => {
 
     return (
         <div className="skills-container" id="Competences" ref={skillsRef}>
-            {/* ... le reste de votre code ... */}
+            <h2 className="project-title">Mes compétences</h2>
             <div className="skills-list">
                 {skills.map((skill, index) => (
                     <div className="skill" key={skill.name}>
                         <FontAwesomeIcon icon={skill.icon} size="3x" className="skill-icon" />
                         <div className="skill-progress">
-                            <div className={`skill-level ${isVisible ? 'animate' : ''}`} 
-                                 style={{ width: isVisible ? skill.level : '0%', backgroundColor: skill.color, animationDelay: `${index * 0.2}s` }}>
+                            <div className={`skill-level ${isVisible ? 'animate' : ''}`}
+                                style={{ width: isVisible ? skill.level : '0%', backgroundColor: skill.color, animationDelay: `${index * 0.2}s` }}>
                             </div>
                             <div className="skill-remaining" style={{ width: isVisible ? `calc(100% - ${skill.level})` : '100%' }}></div>
                         </div>

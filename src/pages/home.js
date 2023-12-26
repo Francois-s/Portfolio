@@ -31,9 +31,9 @@ export default function Home() {
                     <div class="animation_layer parallax" id="jungle5"></div>
                 </ParallaxLayer>
             </Parallax>
+            <CardContainer />
             <ProjectSection />
             <SkillsComponent />
-            <CardContainer />
             <ContactForm />
 
         </>

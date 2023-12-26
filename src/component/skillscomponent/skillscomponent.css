@@ -32,6 +32,7 @@
 .skills-list {
   width: 60%;
   display: flex;
+  padding-top: 50px;
   flex-direction: column;
 }
 
