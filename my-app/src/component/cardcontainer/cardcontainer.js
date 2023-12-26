@@ -1,30 +1,58 @@
 import React from 'react';
 import './cardcontainer.css';
+import { useInView } from 'react-intersection-observer';
+import { motion, AnimatePresence } from 'framer-motion';
 import photo1 from '../../img/landing_page.svg';
 import photo2 from '../../img/wireframe.svg';
-//import photo3 from '../../img/knowledge.svg';
-
 
 const CardContainer = () => {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 0.1
+    });
+
+    const cardVariants = {
+        visible: { opacity: 1, scale: 1, transition: { duration: 2 } }, 
+        hidden: { opacity: 0, scale: 0.8 }
+    };
+
+    const handleMouseMove = (e) => {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const background = `radial-gradient(circle at ${x}px ${y}px, #E7E5E5, #F9F9F9)`;
+        card.style.background = background;
+    };
+
+    const handleMouseLeave = (e) => {
+        const card = e.currentTarget;
+        card.style.background = '';
+    };
+
     return (
-        <div className='wrapper' id="cardss">
+        <div className='wrapper' id="cardss" ref={ref}>
             <h2 className="project-title">MES SERVICES</h2>
             <div className="card-container">
-                <div className="card">
-                    <img src={photo1} alt=" 1" />
-                    <h3>Applications</h3>
-                    <p>Développe des sites vitrines, e-commerce, applications web, mobile ou de bureau.</p>
-                </div>
-                <div className="card">
-                    <img src={photo2} alt=" 2" />
-                    <h3>Expérience utilisateur & Design</h3>
-                    <p>Une expérience fluide et magnifique pour vos clients.</p>
-                </div>
-                <div className="card">
-                    <img src={photo1} alt=" 3" />
-                    <h3>Accessibilité   </h3>
-                    <p>Nous avons tous le droit d'explorer le web. HTML sémantique et ARIA si pertinent.</p>
-                </div>
+                <AnimatePresence>
+                    {inView && [photo1, photo2, photo1].map((photo, index) => (
+                        <motion.div 
+                            className="card" 
+                            key={index}
+                            variants={cardVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            <img src={photo} alt={`Card ${index + 1}`} />
+                            <h3>Titre {index + 1}</h3>
+                            <p>Description {index + 1}</p>
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
             </div>
         </div>
     );

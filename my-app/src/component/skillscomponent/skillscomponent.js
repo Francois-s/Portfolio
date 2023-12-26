@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './skillscomponent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHtml5, faCss3Alt, faReact, faJsSquare, faWordpress, faShopify, faPython } from '@fortawesome/free-brands-svg-icons';
-
 
 const skills = [
     { icon: faHtml5, name: 'HTML5', level: '95%' },
@@ -15,25 +14,40 @@ const skills = [
     // Ajoutez ici les compétences C et C++ si nécessaire
 ];
 
-const calculateRemaining = (level) => {
-    const numLevel = parseInt(level);
-    return `${100 - numLevel}%`;
-};
-
-
 const SkillsComponent = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const skillsRef = useRef(null);
+
+    useEffect(() => {
+        const currentRef = skillsRef.current; // Définir une variable locale pour la référence actuelle
+        const observer = new IntersectionObserver((entries) => {
+            const entry = entries[0];
+            setIsVisible(entry.isIntersecting);
+        }, { threshold: 0.5 });
+
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+        };
+    }, []); // Le tableau de dépendances est vide, donc cet effet s'exécute une seule fois
+
     return (
-        <div className="skills-container" id="Competences">
-            <div className="skills-title">
-                <h2 className='project-title'>MES COMPÉTENCES</h2>
-            </div>
+        <div className="skills-container" id="Competences" ref={skillsRef}>
+            {/* ... le reste de votre code ... */}
             <div className="skills-list">
-                {skills.map((skill) => (
+                {skills.map((skill, index) => (
                     <div className="skill" key={skill.name}>
                         <FontAwesomeIcon icon={skill.icon} size="3x" className="skill-icon" />
                         <div className="skill-progress">
-                            <div className="skill-level" style={{ width: skill.level, backgroundColor: skill.color }}></div>
-                            <div className="skill-remaining" style={{ width: calculateRemaining(skill.level) }}></div>
+                            <div className={`skill-level ${isVisible ? 'animate' : ''}`} 
+                                 style={{ width: isVisible ? skill.level : '0%', backgroundColor: skill.color, animationDelay: `${index * 0.2}s` }}>
+                            </div>
+                            <div className="skill-remaining" style={{ width: isVisible ? `calc(100% - ${skill.level})` : '100%' }}></div>
                         </div>
                         <span className="skill-percent">{skill.level}</span>
                     </div>

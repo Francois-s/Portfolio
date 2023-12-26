@@ -20,6 +20,7 @@ const openUrl = (url) => {
 const ProjectSection = () => {
     return (
         <div className="project-section" id="Projets">
+            <div className='block_white'></div>
             <h2 className="project-title">PROJETS</h2>
             <div className="project-content">
                 <div className="project-image-container">

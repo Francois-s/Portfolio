@@ -14,6 +14,10 @@
     cursor: pointer;
 }
 
+.block_white {
+    padding: 40px;
+}
+
 .project-title::after {
     content: '';
     position: absolute;
@@ -179,6 +183,10 @@
     .project-content {
         flex-direction: column;
         align-items: center;
+    }
+
+    .block_white {
+        padding: 100px;
     }
 
     .project-title {

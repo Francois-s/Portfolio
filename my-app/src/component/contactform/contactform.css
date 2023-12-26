@@ -1,0 +1,84 @@
+.contact-form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    color: #000;
+    font-family: 'Arial', sans-serif;
+}
+
+.contact-form h2 {
+    text-align: center;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.animated-field input, .animated-field textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #000;
+    background: transparent;
+    box-sizing: border-box;
+    transition: padding-top 0.4s, margin-top 0.4s;
+}
+
+.animated-field label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transition: top 0.4s, left 0.4s, font-size 0.4s, color 0.4s;
+}
+
+.animated-field .underline {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.4s;
+}
+
+.animated-field input:focus + label, .animated-field textarea:focus + label,
+.animated-field input:not(:placeholder-shown) + label,
+.animated-field textarea:not(:placeholder-shown) + label {
+    top: -20px;
+    left: 0;
+    font-size: 0.8em;
+    color: #000;
+}
+
+.animated-field input:focus, .animated-field textarea:focus,
+.animated-field input:not(:placeholder-shown),
+.animated-field textarea:not(:placeholder-shown) {
+    padding-top: 28px;
+    margin-top: 12px;
+}
+
+.animated-field input:focus ~ .underline, 
+.animated-field textarea:focus ~ .underline {
+    width: 100%;
+}
+
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #333;
+    transform: translateY(-3px);
+}

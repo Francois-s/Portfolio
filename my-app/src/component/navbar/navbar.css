@@ -21,24 +21,29 @@
 .nav_ul {
     display: flex;
     gap: 57px;
-    color: rgb(255, 255, 255);
     list-style-type: none;
     font-size: 20px;
     font-weight: 500;
     line-height: 34px;
     letter-spacing: 0em;
     text-align: right;
-
 }
 
 a {
     text-decoration: none;
-    color: inherit;
+    color: white;
 }
 
+/* Bouton hamburger pour les appareils mobiles */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+}
 
-
-@media screen and (max-width:992px) {
+@media screen and (max-width: 992px) {
     .logo {
         width: 145px;
         height: 47px;
@@ -49,14 +54,19 @@ a {
     }
 
     .nav_ul {
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 17px;
-        letter-spacing: 0em;
-        text-align: right;
-        gap: 30px;
-
+        display: none; /* Cache la navigation par défaut */
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        font-size: 16px;
+        line-height: 24px;
     }
 
+    .nav.expanded .nav_ul {
+        display: flex; /* Affiche la navigation en mode déroulant */
+    }
 
+    .hamburger {
+        display: block; /* Affiche le bouton hamburger */
+    }
 }
