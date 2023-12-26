@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/Portfolio/static/css/main.cf6d0f5f.css",
+    "main.js": "/Portfolio/static/js/main.ac5c0a17.js",
+    "static/media/projet3-1.png": "/Portfolio/static/media/projet3-1.bf3fecef4eed779ef909.png",
+    "static/media/projet4-1.png": "/Portfolio/static/media/projet4-1.67938cb41f4336df2535.png",
+    "static/media/projet3-2.png": "/Portfolio/static/media/projet3-2.c7d9cb60fbc2a3704cae.png",
+    "static/media/projet4-2.png": "/Portfolio/static/media/projet4-2.ba79d63ec07ab08f47b8.png",
+    "static/media/projet2-1.png": "/Portfolio/static/media/projet2-1.f46e0db5421f997c122c.png",
+    "static/media/projet1-1.png": "/Portfolio/static/media/projet1-1.20134ce99781e28dd6a2.png",
+    "static/media/projet1-2.png": "/Portfolio/static/media/projet1-2.a83558dbc3a95bf03e11.png",
+    "static/media/jungle1.png": "/Portfolio/static/media/jungle1.5ec83d96505269c854f3.png",
+    "static/media/background.png": "/Portfolio/static/media/background.f8e0a3e86fb4252623af.png",
+    "static/media/jungle3.png": "/Portfolio/static/media/jungle3.5350abbda455914478ee.png",
+    "static/media/projet2-2.png": "/Portfolio/static/media/projet2-2.6f8c957559114259bb17.png",
+    "static/media/mountains.png": "/Portfolio/static/media/mountains.af6b8801f09352cf3f76.png",
+    "static/media/man_on_mountain.png": "/Portfolio/static/media/man_on_mountain.41b59d37a39bb0b35f75.png",
+    "static/media/jungle4.png": "/Portfolio/static/media/jungle4.80488612344ed2683ee6.png",
+    "static/media/jungle2.png": "/Portfolio/static/media/jungle2.b3f7031947988987d357.png",
+    "static/media/logo_land.png": "/Portfolio/static/media/logo_land.38bc453f18c7f64bebdc.png",
+    "static/media/jungle5.png": "/Portfolio/static/media/jungle5.6f841a2d5b2b021093df.png",
+    "static/media/wireframe.svg": "/Portfolio/static/media/wireframe.14457a5c6a85a5aa29b1824833d32fb0.svg",
+    "static/media/logo-marine-s2j.png": "/Portfolio/static/media/logo-marine-s2j.475b15585574521a8890.png",
+    "static/media/landing_page.svg": "/Portfolio/static/media/landing_page.93592e9c54bbf3590c5bf858ae41660c.svg",
+    "index.html": "/Portfolio/index.html",
+    "main.cf6d0f5f.css.map": "/Portfolio/static/css/main.cf6d0f5f.css.map",
+    "main.ac5c0a17.js.map": "/Portfolio/static/js/main.ac5c0a17.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf6d0f5f.css",
+    "static/js/main.ac5c0a17.js"
+  ]
+}
