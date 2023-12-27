@@ -12,9 +12,28 @@ const CardContainer = () => {
     });
 
     const cardVariants = {
-        visible: { opacity: 1, scale: 1, transition: { duration: 4 } }, 
+        visible: { opacity: 1, scale: 1, transition: { duration: 4 } },
         hidden: { opacity: 0, scale: 0.8 }
     };
+
+    const cards = [
+        {
+            title: "Developpeur Front-End",
+            description: "Spécialiste en HTML, CSS, React et JavaScript, je crée des interfaces utilisateur interactives, réactives et modernes. Mon approche est centrée sur la création d'expériences web fluides et engageantes, adaptées à tous les appareils.",
+            image: photo1 
+        },
+        {
+            title: "Maîtrise des CMS",
+            description: "Expérimenté dans l'utilisation de systèmes de gestion de contenu tels que WordPress et Shopify, je développe des sites web personnalisés et optimisés pour le SEO. Mon expertise inclut la création de thèmes sur mesure et l'intégration de fonctionnalités e-commerce.",
+            image: photo2
+        },
+        {
+            title: "Veille technologique",
+            description: "Passionné par l'innovation, je me tiens constamment informé des dernières tendances et technologies en développement web, assurant ainsi des solutions avant-gardistes et performantes.",
+            image: photo1
+        }
+    ];
+
 
     const handleMouseMove = (e) => {
         const card = e.currentTarget;
@@ -36,9 +55,9 @@ const CardContainer = () => {
             <h2 className="project-title">MES SERVICES</h2>
             <div className="card-container">
                 <AnimatePresence>
-                    {inView && [photo1, photo2, photo1].map((photo, index) => (
-                        <motion.div 
-                            className="card" 
+                    {inView && cards.map((card, index) => (
+                        <motion.div
+                            className="card"
                             key={index}
                             variants={cardVariants}
                             initial="hidden"
@@ -47,9 +66,9 @@ const CardContainer = () => {
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}
                         >
-                            <img src={photo} alt={`Card ${index + 1}`} />
-                            <h3>Titre {index + 1}</h3>
-                            <p>Description {index + 1}</p>
+                            <img src={card.image} alt={`Card ${index + 1}`} />
+                            <h3>{card.title}</h3>
+                            <p>{card.description}</p>
                         </motion.div>
                     ))}
                 </AnimatePresence>
