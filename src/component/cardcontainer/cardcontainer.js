@@ -4,6 +4,8 @@ import { useInView } from 'react-intersection-observer';
 import { motion, AnimatePresence } from 'framer-motion';
 import photo1 from '../../img/landing_page.svg';
 import photo2 from '../../img/wireframe.svg';
+import photo3 from '../../img/veille.jpg';
+
 
 const CardContainer = () => {
     const { ref, inView } = useInView({
@@ -30,7 +32,7 @@ const CardContainer = () => {
         {
             title: "Veille technologique",
             description: "Passionné par l'innovation, je me tiens constamment informé des dernières tendances et technologies en développement web, assurant ainsi des solutions avant-gardistes et performantes.",
-            image: photo1
+            image: photo3
         }
     ];
 

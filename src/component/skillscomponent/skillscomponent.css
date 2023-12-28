@@ -26,7 +26,6 @@
 
 .desk-image {
   width: 40%;
-  /* Adjust the size as needed */
 }
 
 .skills-list {
@@ -65,23 +64,18 @@
   text-align: right;
 }
 
-/* Existing styles... */
-
-/* ...existing styles... */
-
-
 .skill-progress {
   background-color: rgb(0, 0, 0);
   transition: height 0.1s ease-in-out;
   border-radius: 10px;
-  width: 100%; /* Full width to contain the skill level bar */
-  height: 20px; /* Height of the skill level bar */
+  width: 100%;
+  height: 20px;
   display: flex;
 }
 
 .skill-level {
   height: 100%;
-  border-radius: 10px 0 0 10px; /* Rounded left corners */
+  border-radius: 10px 0 0 10px;
   display: flex;
   align-items: center;
   color: white;
@@ -91,11 +85,10 @@
 
 .skill-remaining {
   height: 100%;
-  background-color: #e0e0e0; /* Color for the remaining part */
-  border-radius: 0 10px 10px 0; /* Rounded right corners */
+  background-color: #e0e0e0;
+  border-radius: 0 10px 10px 0;
 }
 
-/* ...remaining styles... */
 
 
 .skill-icon {
@@ -106,7 +99,6 @@
 .skill-percent {
   padding: 10px;
 }
-/* You might want to add media queries for responsiveness */
 
 .skill-progress:hover {
   background-color: rgb(4, 126, 4);
@@ -126,9 +118,9 @@
 .skill-progress {
   background-color: #000000;
   border-radius: 10px;
-  width: 100%; /* Full width to contain the skill level bar */
-  height: 20px; /* Height of the skill level bar */
-  overflow: hidden; /* Assure that the growing bar doesn't exceed the container */
+  width: 100%;
+  height: 20px;
+  overflow: hidden;
 }
 
 .skill-level {
@@ -138,10 +130,9 @@
   align-items: center;
   color: rgb(0, 0, 0);
   text-align: right;
-  animation: growSkillBar 2s ease; /* Apply the animation */
+  animation: growSkillBar 2s ease;
 }
 
-/* Apply this animation delay to each skill so they don't all animate at once */
 .skill:nth-child(1) .skill-level { animation-delay: 0.2s; }
 .skill:nth-child(2) .skill-level { animation-delay: 0.4s; }
 .skill:nth-child(3) .skill-level { animation-delay: 0.6s; }
@@ -149,6 +140,3 @@
 .skill:nth-child(5) .skill-level { animation-delay: 1s; }
 .skill:nth-child(6) .skill-level { animation-delay: 1.2s; }
 .skill:nth-child(7) .skill-level { animation-delay: 1.4s; }
-/* Continue for as many skills as you have */
-
-/* ...remaining styles... */

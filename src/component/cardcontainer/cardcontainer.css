@@ -1,35 +1,24 @@
-/* Styles pour les cartes en version desktop */
 .card-container {
     display: flex;
     flex-wrap: nowrap;
-    /* Pour que les cartes ne passent pas à la ligne */
     overflow-x: auto;
-    /* Activer le défilement horizontal si nécessaire */
     padding: 20px 0px 20px 0px;
 }
 
 .card {
     flex: 0 0 calc(30% - 20px);
-    /* 33.33% pour 3 cartes par ligne en desktop, -20px pour la marge entre les cartes */
     margin-right: 20px;
-    /* Marge à droite pour toutes les cartes sauf la dernière */
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    /* Bords arrondis */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-.card:last-child {
-    margin-right: 0;
-    /* Supprimer la marge à droite pour la dernière carte */
-}
 
 .card img {
     width: 60%;
     border-radius: 10px;
-    /* Bords arrondis pour l'image */
 }
 
 .card p {
@@ -41,29 +30,27 @@
     padding-top: 250px;
 }
 
-/* Styles pour les cartes en version mobile */
 @media (max-width: 1100px) {
     .card-container {
         flex-wrap: wrap;
-        justify-content: center; /* Centre les cartes */
-        padding: 20px; /* Ajoute du padding pour éviter que les cartes touchent les bords */
+        justify-content: center; 
+        padding: 20px; 
     }
 
     .card {
-        flex: 0 0 90%; /* Full width pour les cartes */
-        margin-bottom: 20px; /* Espace entre les cartes */
-        padding: 15px; /* Ajustez le padding si nécessaire */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Réduire l'ombre pour un look plus adapté */
+        flex: 0 0 90%;
+        margin-bottom: 20px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
     }
 
     .card img {
-        width: 60%; /* Ajustez la taille de l'image si nécessaire */
+        width: 60%;
     }
 }
 
-/* Styles pour mobiles (à partir de 768px) */
 @media (max-width: 768px) {
     .card img {
-        width: 80%; /* Augmente la taille de l'image sur mobile */
+        width: 80%;
     }
 }
