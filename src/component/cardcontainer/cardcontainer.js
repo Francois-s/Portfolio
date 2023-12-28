@@ -19,12 +19,12 @@ const CardContainer = () => {
     const cards = [
         {
             title: "Developpeur Front-End",
-            description: "Spécialiste en HTML, CSS, React et JavaScript, je crée des interfaces utilisateur interactives, réactives et modernes. Mon approche est centrée sur la création d'expériences web fluides et engageantes, adaptées à tous les appareils.",
+            description: "Spécialiste en HTML, CSS, React et JavaScript, je crée des interfaces utilisateur interactives, réactives et modernes.",
             image: photo1 
         },
         {
             title: "Maîtrise des CMS",
-            description: "Expérimenté dans l'utilisation de systèmes de gestion de contenu tels que WordPress et Shopify, je développe des sites web personnalisés et optimisés pour le SEO. Mon expertise inclut la création de thèmes sur mesure et l'intégration de fonctionnalités e-commerce.",
+            description: "Expérimenté dans l'utilisation de systèmes de gestion de contenu tels que WordPress et Shopify, je développe des sites web personnalisés et optimisés pour le SEO.",
             image: photo2
         },
         {

@@ -15,6 +15,12 @@ export default function Home() {
                 <ParallaxLayer offset={0} speed={-0.1}>
                     <div class="animation_layer parallax" id="logoland"></div>
                 </ParallaxLayer>
+                <ParallaxLayer offset={0} speed={0.0}>
+                    <div class="animation_layer parallax" id="logo1"></div>
+                </ParallaxLayer>
+                <ParallaxLayer offset={0} speed={0.1}>
+                    <div class="animation_layer parallax" id="logo2"></div>
+                </ParallaxLayer>
                 <ParallaxLayer offset={0} speed={0.3}>
                     <div class="animation_layer parallax" id="jungle1"></div>
                 </ParallaxLayer>

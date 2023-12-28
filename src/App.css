@@ -102,6 +102,14 @@
   background-image: url(./img/logo_land.png);
 }
 
+#logo1 {
+  background-image: url(./img/logo-1.png);
+}
+
+#logo2 {
+  background-image: url(./img/logo-2.png);
+}
+
 #jungle1 {
   background-image: url(./img/jungle1.png);
 }

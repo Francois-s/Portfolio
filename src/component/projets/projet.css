@@ -2,7 +2,6 @@
     text-align: center;
     font-family: 'Arial', sans-serif;
     padding: 4rem 6rem;
-    /* Increased padding for more space */
 }
 
 .project-title {
@@ -28,17 +27,14 @@
     background-color: rgb(0, 0, 0);
     border-radius: 2px;
     transform: scaleX(1);
-    /* Set the underline to be fully visible initially */
     transition: transform 0.5s ease;
 }
 
 .project-title:hover::after {
     transform: scaleX(0);
-    /* Animate to no underline on hover */
     transition-timing-function: cubic-bezier(.19, 1, .22, 1);
 }
 
-/* Optional: if you want to add keyframes for a disappearing effect with a slight bounce back */
 @keyframes hideUnderline {
     0% {
         transform: scaleX(1);
@@ -55,16 +51,13 @@
 
 .project-title:hover::after {
     animation: hideUnderline 0.5s forwards;
-    /* Use the defined keyframes for the disappearing effect */
 }
 
 .project-content {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    /* This will give more space between the image and the text */
     margin-top: 3rem;
-    /* Increased margin for more space */
 }
 
 .project-image-container {
