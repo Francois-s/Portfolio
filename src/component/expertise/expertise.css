@@ -1,0 +1,105 @@
+.expertise {
+    position: relative;
+    background: var(--paper-tint);
+}
+
+.expertise-pin-wrap {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 48px;
+    overflow: hidden;
+}
+
+.expertise-head {
+    flex: none;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.expertise-track {
+    flex: none;
+    display: flex;
+    gap: 32px;
+    padding: 0 48px;
+    will-change: transform;
+}
+
+.expertise-card {
+    flex: none;
+    width: 420px;
+    background: #fff;
+    border: 1px solid rgba(11, 11, 18, 0.08);
+    border-radius: 24px;
+    padding: 48px 44px;
+    scroll-snap-align: start;
+}
+
+.expertise-glyph {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-family: 'Consolas', monospace;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 28px;
+    box-shadow: 0 12px 28px var(--accent-glow);
+}
+
+.expertise-tag {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-1);
+    margin-bottom: 12px;
+}
+
+.expertise-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin: 0 0 16px;
+}
+
+.expertise-card p {
+    color: rgba(11, 11, 18, 0.65);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 767px) {
+    .expertise-pin-wrap {
+        height: auto;
+        display: block;
+        padding: 72px 0 56px;
+    }
+
+    .expertise-head {
+        margin-bottom: 40px;
+    }
+
+    .expertise-track,
+    .expertise-track.is-static-scroll {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 4px 20px 24px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .expertise-card {
+        width: 78vw;
+        padding: 32px 28px;
+    }
+}

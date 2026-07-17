@@ -6,10 +6,9 @@
     font-family: 'Arial', sans-serif;
 }
 
-.contact-form h2 {
+.contact-head {
     text-align: center;
-    color: #000;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .input-group {
@@ -66,19 +65,3 @@
     width: 100%;
 }
 
-.submit-button {
-    display: block;
-    width: 100%;
-    padding: 10px 15px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.submit-button:hover {
-    background-color: #333;
-    transform: translateY(-3px);
-}

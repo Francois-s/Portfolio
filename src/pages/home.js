@@ -1,47 +1,22 @@
 import "./home.css"
-import CardContainer from "../component/cardcontainer/cardcontainer"
+import Navbar from "../component/navbar/navbar"
+import Hero from "../component/hero/hero"
 import ProjectSection from "../component/projets/projet"
+import Expertise from "../component/expertise/expertise"
 import SkillsComponent from "../component/skillscomponent/skillscomponent"
+import About from "../component/about/about"
 import ContactForm from "../component/contactform/contactform"
-import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 
 export default function Home() {
     return (
         <>
-            <Parallax pages={2} style={{ top: '0', left: '0' }} class="animation">
-                <ParallaxLayer offset={0} speed={0.25}>
-                    <div class="animation_layer parallax" id="artback"></div>
-                </ParallaxLayer>
-                <ParallaxLayer offset={0} speed={-0.1}>
-                    <div class="animation_layer parallax" id="logoland"></div>
-                </ParallaxLayer>
-                <ParallaxLayer offset={0} speed={0.0}>
-                    <div class="animation_layer parallax" id="logo1"></div>
-                </ParallaxLayer>
-                <ParallaxLayer offset={0} speed={0.1}>
-                    <div class="animation_layer parallax" id="logo2"></div>
-                </ParallaxLayer>
-                <ParallaxLayer offset={0} speed={0.3}>
-                    <div class="animation_layer parallax" id="jungle1"></div>
-                </ParallaxLayer>
-                <ParallaxLayer offset={0} speed={0.35}>
-                    <div class="animation_layer parallax" id="jungle2"></div>
-                </ParallaxLayer>
-                <ParallaxLayer offset={0} speed={0.7}>
-                    <div class="animation_layer parallax" id="jungle3"></div>
-                </ParallaxLayer>
-                <ParallaxLayer offset={0} speed={0.45}>
-                    <div class="animation_layer parallax" id="jungle4"></div>
-                </ParallaxLayer>
-                <ParallaxLayer offset={0} speed={0.4}>
-                    <div class="animation_layer parallax" id="jungle5"></div>
-                </ParallaxLayer>
-            </Parallax>
-            <CardContainer />
+            <Navbar />
+            <Hero />
             <ProjectSection />
+            <Expertise />
             <SkillsComponent />
+            <About />
             <ContactForm />
-
         </>
     )
 }
