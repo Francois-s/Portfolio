@@ -5,6 +5,7 @@ import './skillscomponent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHtml5, faCss3Alt, faReact, faJsSquare, faWordpress, faShopify, faPython } from '@fortawesome/free-brands-svg-icons';
 import { SiCplusplus } from 'react-icons/si';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +24,7 @@ const skills = [
 ];
 
 const SkillsComponent = () => {
+    const { t } = useLanguage();
     const sectionRef = useRef(null);
     const ringRefs = useRef([]);
     const valueRefs = useRef([]);
@@ -103,8 +105,8 @@ const SkillsComponent = () => {
             </svg>
 
             <div className="skills-head">
-                <h2 className="section-title">Les outils que je maîtrise, en un coup d'œil</h2>
-                <p className="section-subtitle">Huit technologies que j'utilise au quotidien.</p>
+                <h2 className="section-title">{t.skills.title}</h2>
+                <p className="section-subtitle">{t.skills.subtitle}</p>
             </div>
 
             <div className="skills-grid">

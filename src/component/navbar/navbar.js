@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './navbar.css';
-
-const NAV_LINKS = [
-    { href: '#Projets', label: 'Projets' },
-    { href: '#Expertise', label: 'Expertise' },
-    { href: '#Competences', label: 'Compétences' },
-    { href: '#About', label: 'À propos' },
-];
+import { useLanguage } from '../../i18n/LanguageContext';
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { language, toggleLanguage, t } = useLanguage();
+
+    const NAV_LINKS = [
+        { href: '#Projets', label: t.nav.projects },
+        { href: '#Expertise', label: t.nav.expertise },
+        { href: '#Competences', label: t.nav.skills },
+        { href: '#About', label: t.nav.about },
+    ];
 
     useEffect(() => {
         const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -32,15 +34,31 @@ export default function Navbar() {
                             </li>
                         ))}
                     </ul>
-                    <a href="#contact" className="btn btn-primary nav-cta" onClick={closeMenu}>
-                        Me contacter
-                    </a>
+                    <div className="nav-actions">
+                        <button
+                            type="button"
+                            className="lang-toggle"
+                            onClick={toggleLanguage}
+                            aria-label={t.nav.switchLang}
+                        >
+                            <span className={`lang-flag ${language === 'fr' ? 'is-active' : ''}`}>
+                                <span className="fi fi-fr"></span>
+                            </span>
+                            <span className={`lang-flag ${language === 'en' ? 'is-active' : ''}`}>
+                                <span className="fi fi-gb"></span>
+                            </span>
+                            <span className="lang-thumb" data-side={language}></span>
+                        </button>
+                        <a href="#contact" className="btn btn-primary nav-cta" onClick={closeMenu}>
+                            {t.nav.contact}
+                        </a>
+                    </div>
                 </nav>
 
                 <button
                     type="button"
                     className={`hamburger ${isMenuOpen ? 'is-open' : ''}`}
-                    aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+                    aria-label={isMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
                     aria-expanded={isMenuOpen}
                     onClick={() => setIsMenuOpen((open) => !open)}
                 >

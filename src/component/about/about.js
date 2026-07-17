@@ -3,10 +3,12 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './about.css';
 import profilePhoto from '../../img/profile-photo.jpg';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+    const { t } = useLanguage();
     const sectionRef = useRef(null);
     const photoRef = useRef(null);
     const textRef = useRef(null);
@@ -52,20 +54,16 @@ const About = () => {
     return (
         <section className="about" id="About" ref={sectionRef}>
             <div className="about-head">
-                <h2 className="section-title">À propos de moi</h2>
-                <p className="section-subtitle">Qui se cache derrière l'écran</p>
+                <h2 className="section-title">{t.about.title}</h2>
+                <p className="section-subtitle">{t.about.subtitle}</p>
             </div>
             <div className="about-content">
                 <div className="about-photo-wrap" ref={photoRef}>
-                    <img src={profilePhoto} alt="François S." className="about-photo" />
+                    <img src={profilePhoto} alt={t.about.name} className="about-photo" />
                 </div>
                 <div className="about-text" ref={textRef}>
-                    <h3 className="about-name">François Sergent de Joannis</h3>
-                    <p className="about-bio">
-                        Développeur Front-End passionné, je conçois des interfaces modernes et
-                        interactives avec React et JavaScript. J'aime aussi m'appuyer sur des CMS
-                        comme WordPress ou Shopify pour donner vie à des projets sur-mesure.
-                    </p>
+                    <h3 className="about-name">{t.about.name}</h3>
+                    <p className="about-bio">{t.about.bio}</p>
                 </div>
             </div>
         </section>

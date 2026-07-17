@@ -18,17 +18,20 @@ import logoKasa from '../../img/logo-kasa.png';
 import logoHomyFood from '../../img/logo-ohmyfood.png';
 import logoBooki from '../../img/logo-booki.png';
 import marines2j from '../../img/logo-marine-s2j.png';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 const openUrl = (url) => {
     window.open(url, '_blank');
 };
 
 const ProjectSection = () => {
+    const { t } = useLanguage();
+
     return (
         <div className="project-section" id="Projets">
             <div className="project-head">
-                <h2 className="section-title">Mes projets</h2>
-                <p className="section-subtitle">Une sélection de sites que j'ai conçus et développés.</p>
+                <h2 className="section-title">{t.projects.title}</h2>
+                <p className="section-subtitle">{t.projects.subtitle}</p>
             </div>
             <div className="project-content">
                 <div className="project-image-container">
@@ -37,8 +40,8 @@ const ProjectSection = () => {
                 </div>
                 <div className="project-description">
                     <img src={logoM2fctg} alt="M2 FCTG Logo" className="project-logo" />
-                    <p>M2 FCTG est le site vitrine du Master 2 Finances des Collectivités Territoriales et des Groupements. Il présente la formation, l'équipe pédagogique, les promotions et les événements, en mettant en avant l'alternance, l'expertise du secteur et la forte insertion professionnelle du diplôme.</p>
-                    <button onClick={() => openUrl("https://m2fctg.fr/")} className="btn btn-primary">Voir plus</button>
+                    <p>{t.projects.m2fctg}</p>
+                    <button onClick={() => openUrl("https://m2fctg.fr/")} className="btn btn-primary">{t.projects.viewMore}</button>
                 </div>
             </div>
             <div className="project-content">
@@ -48,8 +51,8 @@ const ProjectSection = () => {
                 </div>
                 <div className="project-description">
                     <img src={logoVersusCoins} alt="Versus Coins Logo" className="project-logo" />
-                    <p>Versus Coins est un site vitrine ludique autour d'un projet crypto qui oppose deux générations, Team Z et Team Y, à travers une roadmap par paliers et une identité visuelle inspirée du monde des memecoins.</p>
-                    <button onClick={() => openUrl("https://versuscoins.com/")} className="btn btn-primary">Voir plus</button>
+                    <p>{t.projects.versuscoins}</p>
+                    <button onClick={() => openUrl("https://versuscoins.com/")} className="btn btn-primary">{t.projects.viewMore}</button>
                 </div>
             </div>
             <div className="project-content">
@@ -59,9 +62,9 @@ const ProjectSection = () => {
                 </div>
                 <div className="project-description">
                     <img src={logoBooki} alt="Booki Logo" className="project-logo" />
-                    <p>Booki est une solution tout-en-un pour les voyageurs, offrant une gamme complète de services pour enrichir l'expérience de voyage. Du choix de logements uniques à des activités palpitantes, Booki permet aux utilisateurs de planifier et de réserver tous les aspects de leur voyage en quelques clics.</p>
+                    <p>{t.projects.booki}</p>
 
-                    <button onClick={() => openUrl("https://francois-s.github.io/P3---Booki-/")} className="btn btn-primary">Voir plus</button>
+                    <button onClick={() => openUrl("https://francois-s.github.io/P3---Booki-/")} className="btn btn-primary">{t.projects.viewMore}</button>
                 </div>
             </div>
             <div className="project-content">
@@ -71,8 +74,8 @@ const ProjectSection = () => {
                 </div>
                 <div className="project-description">
                     <img src={logoHomyFood} alt="ohmyfood Logo" className="project-logo" id="ohmyfood" />
-                    <p>Ohmyfood révolutionne l'expérience culinaire en proposant une plateforme intuitive pour réserver des menus exclusifs auprès d'une sélection de restaurants. Les utilisateurs peuvent explorer une variété de cuisines, réserver leur menu préféré et profiter d'une expérience gastronomique inoubliable.</p>
-                    <button onClick={() => openUrl("https://francois-s.github.io/P4-ohmyfood/")} className="btn btn-primary">Voir plus</button>
+                    <p>{t.projects.ohmyfood}</p>
+                    <button onClick={() => openUrl("https://francois-s.github.io/P4-ohmyfood/")} className="btn btn-primary">{t.projects.viewMore}</button>
                 </div>
             </div>
             <div className="project-content">
@@ -82,8 +85,8 @@ const ProjectSection = () => {
                 </div>
                 <div className="project-description">
                     <img src={logoKasa} alt="Kasa Logo" className="project-logo" />
-                    <p>Kasa est une plateforme innovante conçue pour simplifier la recherche de logements en voyage. Inspirée par le modèle de Airbnb, Kasa offre une expérience utilisateur exceptionnelle, permettant aux voyageurs de trouver facilement des hébergements confortables et abordables, adaptés à leurs besoins spécifiques.</p>
-                    <button onClick={() => openUrl("https://francois-s.github.io/P4-ohmyfood/")} className="btn btn-primary">Voir plus</button>
+                    <p>{t.projects.kasa}</p>
+                    <button onClick={() => openUrl("https://francois-s.github.io/P4-ohmyfood/")} className="btn btn-primary">{t.projects.viewMore}</button>
                 </div>
             </div>
             <div className="project-content">
@@ -92,8 +95,8 @@ const ProjectSection = () => {
                     <img src={projet42} alt="Another Project Thumbnail" className="project-image project-image-top" />
                 </div>        <div className="project-description">
                     <img src={marines2j} alt="marines2j Logo" className="project-logo" id='marines2j' />
-                    <p>Marine s2j est un site vitrine élégant et contemporain pour une hairstylist renommée basée à Paris. Le site met en lumière les shootings et projets auxquels Marine a contribué, et offre aux visiteurs toutes les informations nécessaires pour découvrir son travail et prendre rendez-vous.</p>
-                    <button onClick={() => openUrl("https://francois-s.github.io/Marines2j/index.html")} className="btn btn-primary">Voir plus</button>
+                    <p>{t.projects.marines2j}</p>
+                    <button onClick={() => openUrl("https://francois-s.github.io/Marines2j/index.html")} className="btn btn-primary">{t.projects.viewMore}</button>
                 </div>
             </div>
         </div>
