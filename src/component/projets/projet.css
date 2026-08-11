@@ -15,6 +15,14 @@
     margin-top: 3rem;
 }
 
+.project-content:nth-of-type(even) {
+    flex-direction: row-reverse;
+}
+
+.project-content:nth-of-type(even) .project-description {
+    text-align: right;
+}
+
 .project-image-container {
     position: relative;
     max-width: 40%;
@@ -74,7 +82,8 @@
 }
 
 @media (max-width: 768px) {
-    .project-content {
+    .project-content,
+    .project-content:nth-of-type(even) {
         flex-direction: column;
         align-items: center;
     }
@@ -90,11 +99,16 @@
     }
 
     .project-description,
+    .project-content:nth-of-type(even) .project-description,
     .project-description h3,
     .project-description p,
     .project-description .btn-primary {
         text-align: center;
         max-width: 100%;
+    }
+
+    .project-description p {
+        display: none;
     }
 
     .project-description .btn-primary {

@@ -3,8 +3,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './skillscomponent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHtml5, faCss3Alt, faReact, faJsSquare, faWordpress, faShopify, faPython } from '@fortawesome/free-brands-svg-icons';
-import { SiCplusplus } from 'react-icons/si';
+import { faHtml5, faCss3Alt, faReact, faJsSquare, faWordpress, faPython } from '@fortawesome/free-brands-svg-icons';
+import { SiCplusplus, SiClaude } from 'react-icons/si';
 import { useLanguage } from '../../i18n/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,7 +17,7 @@ const skills = [
     { name: 'CSS', level: 95, color: '#1572b6', icon: <FontAwesomeIcon icon={faCss3Alt} /> },
     { name: 'JavaScript', level: 90, color: '#d4b800', icon: <FontAwesomeIcon icon={faJsSquare} /> },
     { name: 'React', level: 90, color: '#61dafb', icon: <FontAwesomeIcon icon={faReact} /> },
-    { name: 'Shopify', level: 85, color: '#95bf47', icon: <FontAwesomeIcon icon={faShopify} /> },
+    { name: 'Claude Code', level: 90, color: '#d97757', icon: <SiClaude /> },
     { name: 'WordPress', level: 80, color: '#21759b', icon: <FontAwesomeIcon icon={faWordpress} /> },
     { name: 'Python', level: 75, color: '#3776ab', icon: <FontAwesomeIcon icon={faPython} /> },
     { name: 'C++', level: 65, color: '#00599c', icon: <SiCplusplus /> },
@@ -98,8 +98,8 @@ const SkillsComponent = () => {
             <svg width="0" height="0" style={{ position: 'absolute' }}>
                 <defs>
                     <linearGradient id="skillRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#7c5cfc" />
-                        <stop offset="100%" stopColor="#4c6ef5" />
+                        <stop offset="0%" stopColor="#0c4a6e" />
+                        <stop offset="100%" stopColor="#14b8a6" />
                     </linearGradient>
                 </defs>
             </svg>

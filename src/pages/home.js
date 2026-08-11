@@ -4,8 +4,8 @@ import Hero from "../component/hero/hero"
 import ProjectSection from "../component/projets/projet"
 import Expertise from "../component/expertise/expertise"
 import SkillsComponent from "../component/skillscomponent/skillscomponent"
-import About from "../component/about/about"
-import ContactForm from "../component/contactform/contactform"
+import CareerGame from "../component/careergame/careergame"
+import ContactCard from "../component/contactcard/contactcard"
 
 export default function Home() {
     return (
@@ -15,8 +15,8 @@ export default function Home() {
             <ProjectSection />
             <Expertise />
             <SkillsComponent />
-            <About />
-            <ContactForm />
+            <CareerGame />
+            <ContactCard />
         </>
     )
 }

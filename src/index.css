@@ -1,8 +1,8 @@
 :root {
-  --accent-1: #7c5cfc;
-  --accent-2: #4c6ef5;
+  --accent-1: #0c4a6e;
+  --accent-2: #14b8a6;
   --accent-gradient: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  --accent-glow: rgba(124, 92, 252, 0.45);
+  --accent-glow: rgba(20, 184, 166, 0.45);
   --ink: #0b0b12;
   --paper: #ffffff;
   --paper-tint: #f7f6fb;
@@ -58,7 +58,7 @@ code {
 .btn-primary {
   background: var(--accent-gradient);
   color: #fff;
-  box-shadow: 0 6px 18px rgba(124, 92, 252, 0.28);
+  box-shadow: 0 6px 18px rgba(20, 184, 166, 0.28);
 }
 
 .btn-primary::before {

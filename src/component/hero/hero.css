@@ -17,7 +17,7 @@
     transform: translateX(-50%);
     width: 900px;
     height: 900px;
-    background: radial-gradient(circle, rgba(124, 92, 252, 0.32), transparent 60%);
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.32), transparent 60%);
     pointer-events: none;
 }
 
@@ -44,9 +44,9 @@
     display: inline-block;
     padding: 0.4rem 1rem;
     border-radius: 999px;
-    background: rgba(124, 92, 252, 0.12);
-    border: 1px solid rgba(124, 92, 252, 0.35);
-    color: #cabdfd;
+    background: rgba(20, 184, 166, 0.12);
+    border: 1px solid rgba(20, 184, 166, 0.4);
+    color: #7dd8ce;
     font-family: var(--font-heading);
     font-weight: 600;
     font-size: 0.85rem;
