@@ -3,15 +3,21 @@ import './contactcard.css';
 import profilePhoto from '../../img/profile-photo.jpg';
 import { useLanguage } from '../../i18n/LanguageContext';
 import useReveal from '../../hooks/useReveal';
+import ScrollDivider from '../scrolldivider/scrolldivider';
 
 const EMAIL = 'fsergent.m@gmail.com';
 
 const ContactCard = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const headRef = useReveal();
     const cardRef = useReveal({ threshold: 0.2 });
 
     return (
+        <>
+        <ScrollDivider
+            className="scroll-divider--contact"
+            phrase={language === 'fr' ? 'À PROPOS · ÉCHANGER · FAIRE ÉQUIPE' : 'ABOUT · CONNECT · COLLABORATE'}
+        />
         <section className="contact-card-section" id="contact">
             <div className="contact-head reveal-on-scroll" ref={headRef}>
                 <h2 className="section-title">{t.contact.title}</h2>
@@ -49,6 +55,7 @@ const ContactCard = () => {
                 </div>
             </div>
         </section>
+        </>
     );
 };
 

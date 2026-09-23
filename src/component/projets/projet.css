@@ -20,6 +20,7 @@
 }
 
 .project-image-container {
+    --desktop-image-width: 100%;
     position: relative;
     width: min(100%, 1040px);
     max-width: 1040px;
@@ -156,6 +157,8 @@
     container-type: size;
 }
 
+.project-browser-screen { display: flex; justify-content: center; align-items: flex-start; }
+
 .project-browser-screen img,
 .project-phone-screen img {
     display: block;
@@ -165,7 +168,11 @@
 }
 
 .project-browser-screen img {
-    transform: translateY(calc((100cqh - 100%) * var(--desktop-progress)));
+    width: var(--desktop-image-width, 100%);
+    max-width: 100%;
+    height: auto;
+    flex: none;
+    transform: translateY(calc(max(0px, 100cqh - 100%) * var(--desktop-progress)));
     will-change: transform;
 }
 
@@ -284,6 +291,7 @@
     .project-content:not(.is-revealed) .project-image-container,
     .project-device-caption { font-size: 0.55rem; padding: 5px 8px; }
     .project-browser-device { width: 76%; }
+    .project-browser-screen img { width: 100%; }
     .project-tablet-device { width: 33%; height: 43%; }
     .project-phone-device { width: 17%; }
     .project-description {

@@ -26,7 +26,7 @@ import marines2j from '../../img/logo-marine-s2j.png';
 import { useLanguage } from '../../i18n/LanguageContext';
 import useReveal from '../../hooks/useReveal';
 
-const ProjectVisual = ({ desktop, mobile, tablet, name, projectRef, onPointerMove, onPointerLeave }) => {
+const ProjectVisual = ({ desktop, mobile, tablet, name, desktopScale = 1, projectRef, onPointerMove, onPointerLeave }) => {
     const visualRef = useRef(null);
 
     useEffect(() => {
@@ -58,7 +58,7 @@ const ProjectVisual = ({ desktop, mobile, tablet, name, projectRef, onPointerMov
     }, [projectRef]);
 
     return (
-        <div className={`project-image-container${tablet ? '' : ' project-image-container-fallback'}`} ref={visualRef} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
+        <div className={`project-image-container${tablet ? '' : ' project-image-container-fallback'}`} style={{ '--desktop-image-width': `${desktopScale * 100}%` }} ref={visualRef} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
             {tablet ? (
                 <div className="project-browser-device">
                     <div className="project-browser-bar" aria-hidden="true"><i /><i /><i /><span>{name}</span></div>
@@ -118,7 +118,7 @@ const ProjectSection = () => {
                 <p className="section-subtitle">{t.projects.subtitle}</p>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[0]} style={{ '--reveal-delay': '0ms' }}>
-                <ProjectVisual desktop={m2fctg1} mobile={m2fctg2} tablet={tabletM2fctg} name="M2 FCTG" projectRef={projectRefs[0]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={m2fctg1} mobile={m2fctg2} tablet={tabletM2fctg} name="M2 FCTG" desktopScale={0.78} projectRef={projectRefs[0]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoM2fctg} alt="M2 FCTG Logo" className="project-logo" />
                     <p>{t.projects.m2fctg}</p>
@@ -132,7 +132,7 @@ const ProjectSection = () => {
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[2]} style={{ '--reveal-delay': '0ms' }}>
-                <ProjectVisual desktop={projet11} mobile={projet12} tablet={tabletBooki} name="Booki" projectRef={projectRefs[2]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={projet11} mobile={projet12} tablet={tabletBooki} name="Booki" desktopScale={0.88} projectRef={projectRefs[2]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoBooki} alt="Booki Logo" className="project-logo" />
                     <p>{t.projects.booki}</p>

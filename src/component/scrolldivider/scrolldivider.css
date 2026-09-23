@@ -1,0 +1,82 @@
+.scroll-divider {
+    --divider-shift: 0vw;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    height: clamp(118px, 12vw, 184px);
+    margin: 0;
+    overflow: hidden;
+    contain: paint;
+}
+
+.scroll-divider::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: .26;
+    background-image: radial-gradient(rgba(255, 255, 255, .42) .7px, transparent .7px);
+    background-size: 13px 13px;
+    mask-image: linear-gradient(90deg, transparent, black 18%, black 82%, transparent);
+}
+
+.scroll-divider-track {
+    display: flex;
+    align-items: center;
+    gap: clamp(26px, 5vw, 84px);
+    width: max-content;
+    transform: translate3d(var(--divider-shift), 0, 0);
+    transform-origin: center;
+    will-change: transform;
+}
+
+.scroll-divider-copy {
+    flex: none;
+    color: #f4fbfa;
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 6.6vw, 6.8rem);
+    font-weight: 800;
+    letter-spacing: -.065em;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.scroll-divider-copy i {
+    display: inline-block;
+    padding: 0 .22em;
+    color: #2dd4bf;
+    font-size: .75em;
+    font-style: normal;
+    vertical-align: .08em;
+}
+
+.scroll-divider--skills {
+    height: clamp(118px, 12vw, 184px);
+    background: linear-gradient(108deg, #0b2430 0%, #0c4a6e 55%, #0f766e 100%);
+    clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+}
+
+.scroll-divider--skills .scroll-divider-copy { transform: rotate(-1.4deg); }
+
+.scroll-divider--contact {
+    height: clamp(100px, 10vw, 148px);
+    background: linear-gradient(108deg, #0b2430 0%, #0c4a6e 48%, #10796f 100%);
+    clip-path: polygon(0 0, 100% 18%, 100% 100%, 0 82%);
+}
+
+.scroll-divider--contact .scroll-divider-copy { transform: rotate(.8deg); }
+
+.scroll-divider--contact .scroll-divider-copy i { color: #f5a76e; }
+
+@media (max-width: 560px) {
+    .scroll-divider--skills { height: 86px; }
+    .scroll-divider--contact { height: 80px; }
+    .scroll-divider-copy { font-size: clamp(1.8rem, 8vw, 2.7rem); }
+    .scroll-divider-track { gap: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-divider--skills .scroll-divider-copy { transform: rotate(-1.4deg); }
+    .scroll-divider--contact .scroll-divider-copy { transform: rotate(.8deg); }
+}

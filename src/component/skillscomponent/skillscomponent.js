@@ -7,6 +7,7 @@ import { faHtml5, faCss3Alt, faReact, faJsSquare, faWordpress, faPython } from '
 import { SiCplusplus, SiClaude } from 'react-icons/si';
 import { useLanguage } from '../../i18n/LanguageContext';
 import useReveal from '../../hooks/useReveal';
+import ScrollDivider from '../scrolldivider/scrolldivider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,7 +29,6 @@ const SkillsComponent = () => {
     const { t, language } = useLanguage();
     const headRef = useReveal();
     const sectionRef = useRef(null);
-    const dividerRef = useRef(null);
     const ringRefs = useRef([]);
     const valueRefs = useRef([]);
 
@@ -96,31 +96,6 @@ const SkillsComponent = () => {
         return () => ctx.revert();
     }, []);
 
-    useEffect(() => {
-        const divider = dividerRef.current;
-        if (!divider) return undefined;
-
-        let frame = 0;
-        const updateProgress = () => {
-            frame = 0;
-            const bounds = divider.getBoundingClientRect();
-            const progress = Math.max(0, Math.min(1, (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)));
-            divider.style.setProperty('--divider-shift', `${(0.5 - progress) * 18}vw`);
-        };
-        const scheduleUpdate = () => {
-            if (!frame) frame = window.requestAnimationFrame(updateProgress);
-        };
-
-        updateProgress();
-        window.addEventListener('scroll', scheduleUpdate, { passive: true });
-        window.addEventListener('resize', scheduleUpdate);
-        return () => {
-            window.removeEventListener('scroll', scheduleUpdate);
-            window.removeEventListener('resize', scheduleUpdate);
-            if (frame) window.cancelAnimationFrame(frame);
-        };
-    }, []);
-
     return (
         <>
             <section className="skills-container" id="Competences" ref={sectionRef}>
@@ -172,15 +147,10 @@ const SkillsComponent = () => {
                     ))}
                 </div>
             </section>
-            <div className="skills-divider" ref={dividerRef} aria-hidden="true">
-                <div className="skills-divider-track">
-                    {[0, 1, 2].map((copy) => (
-                        <span className="skills-divider-copy" key={copy}>
-                            {language === 'fr' ? 'CONCEVOIR' : 'DESIGN'} <i>✳</i> CODE <i>✳</i> {language === 'fr' ? 'DÉPLOYER' : 'DEPLOY'} <i>✳</i> {language === 'fr' ? 'DONNER VIE' : 'BRING TO LIFE'} <i>✳</i>
-                        </span>
-                    ))}
-                </div>
-            </div>
+            <ScrollDivider
+                className="scroll-divider--skills"
+                phrase={language === 'fr' ? 'CONCEVOIR ✳ CODER ✳ DÉPLOYER ✳ DONNER VIE' : 'DESIGN ✳ CODE ✳ DEPLOY ✳ BRING TO LIFE'}
+            />
         </>
     );
 };
