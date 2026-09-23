@@ -38,10 +38,20 @@ const GRAVITY = 0.58;
 const JUMP_FORCE = 12.4;
 const MAX_JUMPS = 2;
 
-const OBSTACLE_W = 28;
-const OBSTACLE_H = 38;
+const OBSTACLE_TYPES = [
+    { type: 'database', w: 42, h: 44 },
+    { type: 'monitor', w: 48, h: 48 },
+    { type: 'server', w: 38, h: 54 },
+    { type: 'laptop', w: 52, h: 38 },
+];
 const OBSTACLE_MIN_GAP = 460;
 const OBSTACLE_MAX_GAP = 700;
+
+const createObstacle = (worldX, previousType) => {
+    const options = OBSTACLE_TYPES.filter((obstacle) => obstacle.type !== previousType);
+    const obstacle = options[Math.floor(Math.random() * options.length)];
+    return { worldX, ...obstacle };
+};
 
 const FIRST_MILESTONE_WORLD_X = 120;
 const MILESTONE_WORLD_INTERVAL = 900;
@@ -106,7 +116,7 @@ const CareerGame = () => {
         velocityY: 0,
         isJumping: false,
         jumpCount: 0,
-        obstacles: phase === 'playing' ? [{ worldX: 600, w: OBSTACLE_W, h: OBSTACLE_H }] : [],
+        obstacles: phase === 'playing' ? [createObstacle(600)] : [],
         nextObstacleWorldX: 600,
         milestoneIndex: 0,
         nextMilestoneWorldX: FIRST_MILESTONE_WORLD_X,
@@ -335,19 +345,89 @@ const CareerGame = () => {
             }
 
             // ---- obstacles (foreground) ----
-            ctx.fillStyle = '#f43f5e';
             g.obstacles.forEach((o) => {
                 const ox = o.worldX - g.worldX;
-                if (ox < -OBSTACLE_W || ox > CANVAS_W + OBSTACLE_W) return;
+                if (ox < -o.w || ox > CANVAS_W + o.w) return;
                 const oy = GROUND_Y - o.h;
-                drawRoundedRect(ox, oy, o.w, o.h, 8);
-                ctx.fill();
-                ctx.fillStyle = '#fff';
-                ctx.beginPath();
-                ctx.arc(ox + 9, oy + 12, 2.4, 0, Math.PI * 2);
-                ctx.arc(ox + o.w - 9, oy + 12, 2.4, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = '#f43f5e';
+                ctx.save();
+                ctx.shadowColor = 'rgba(45,212,191,0.25)';
+                ctx.shadowBlur = 10;
+
+                if (o.type === 'database') {
+                    const cx = ox + o.w / 2;
+                    ctx.fillStyle = '#173d56';
+                    ctx.fillRect(ox + 3, oy + 8, o.w - 6, o.h - 16);
+                    ctx.fillStyle = '#26728a';
+                    for (let tier = 0; tier < 3; tier++) {
+                        const y = oy + 9 + tier * 12;
+                        ctx.beginPath();
+                        ctx.ellipse(cx, y, (o.w - 6) / 2, 6, 0, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.strokeStyle = '#83e8dc';
+                        ctx.lineWidth = 1.5;
+                        ctx.stroke();
+                    }
+                    ctx.beginPath();
+                    ctx.ellipse(cx, oy + o.h - 8, (o.w - 6) / 2, 6, 0, 0, Math.PI);
+                    ctx.strokeStyle = '#83e8dc';
+                    ctx.stroke();
+                } else if (o.type === 'monitor') {
+                    ctx.fillStyle = '#263b59';
+                    drawRoundedRect(ox, oy, o.w, o.h - 12, 6);
+                    ctx.fill();
+                    ctx.fillStyle = '#76eadb';
+                    drawRoundedRect(ox + 5, oy + 5, o.w - 10, o.h - 23, 3);
+                    ctx.fill();
+                    ctx.fillStyle = '#d4f8f1';
+                    ctx.fillRect(ox + o.w / 2 - 3, oy + o.h - 13, 6, 8);
+                    ctx.fillRect(ox + o.w / 2 - 10, oy + o.h - 5, 20, 3);
+                    ctx.strokeStyle = 'rgba(12,74,110,.6)';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(ox + 10, oy + 12);
+                    ctx.lineTo(ox + 17, oy + 19);
+                    ctx.lineTo(ox + 10, oy + 26);
+                    ctx.moveTo(ox + 22, oy + 26);
+                    ctx.lineTo(ox + 30, oy + 12);
+                    ctx.stroke();
+                } else if (o.type === 'server') {
+                    ctx.fillStyle = '#263443';
+                    drawRoundedRect(ox, oy, o.w, o.h, 5);
+                    ctx.fill();
+                    for (let bay = 0; bay < 3; bay++) {
+                        const y = oy + 6 + bay * 15;
+                        ctx.fillStyle = '#3e5966';
+                        drawRoundedRect(ox + 5, y, o.w - 10, 11, 2);
+                        ctx.fill();
+                        ctx.fillStyle = bay === 1 ? '#fbbf24' : '#5eead4';
+                        ctx.beginPath();
+                        ctx.arc(ox + o.w - 10, y + 5.5, 2, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.fillStyle = 'rgba(255,255,255,.22)';
+                        ctx.fillRect(ox + 9, y + 4, 12, 2);
+                    }
+                } else {
+                    ctx.fillStyle = '#274766';
+                    ctx.beginPath();
+                    ctx.moveTo(ox + 5, oy);
+                    ctx.lineTo(ox + o.w - 5, oy);
+                    ctx.lineTo(ox + o.w - 9, oy + o.h - 8);
+                    ctx.lineTo(ox + 9, oy + o.h - 8);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.fillStyle = '#7ce8dc';
+                    drawRoundedRect(ox + 10, oy + 6, o.w - 20, o.h - 19, 3);
+                    ctx.fill();
+                    ctx.fillStyle = '#c6fff5';
+                    ctx.beginPath();
+                    ctx.moveTo(ox + 1, oy + o.h - 7);
+                    ctx.lineTo(ox + o.w - 1, oy + o.h - 7);
+                    ctx.lineTo(ox + o.w - 6, oy + o.h - 2);
+                    ctx.lineTo(ox + 6, oy + o.h - 2);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+                ctx.restore();
             });
 
             // ---- player ----
@@ -428,7 +508,9 @@ const CareerGame = () => {
 
                 // spawn obstacles
                 if (g.worldX + CANVAS_W > g.nextObstacleWorldX) {
-                    g.obstacles.push({ worldX: g.nextObstacleWorldX, w: OBSTACLE_W, h: OBSTACLE_H });
+                    const previous = g.obstacles[g.obstacles.length - 1];
+                    const nextObstacle = createObstacle(g.nextObstacleWorldX, previous && previous.type);
+                    g.obstacles.push(nextObstacle);
                     g.nextObstacleWorldX += OBSTACLE_MIN_GAP + Math.random() * (OBSTACLE_MAX_GAP - OBSTACLE_MIN_GAP);
                 }
                 g.obstacles = g.obstacles.filter((o) => o.worldX - g.worldX > -60);

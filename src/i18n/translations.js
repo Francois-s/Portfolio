@@ -115,8 +115,15 @@ export const translations = {
             ],
         },
         skills: {
-            title: 'Les outils que je maîtrise, en un coup d’œil',
-            subtitle: 'Les technologies qui composent ma boîte à outils.',
+            kicker: 'Mon environnement de production',
+            title: 'De l’idée à la mise en ligne',
+            subtitle: 'Les outils que je mobilise à chaque étape de création.',
+            stages: {
+                structure: 'Poser les bases',
+                interface: 'Développer',
+                platforms: 'Intégrer un CMS',
+                automation: 'Automatiser & explorer',
+            },
         },
         contact: {
             title: 'Contactez-moi',
@@ -243,8 +250,15 @@ export const translations = {
             ],
         },
         skills: {
-            title: 'The tools I master, at a glance',
-            subtitle: 'The technologies that make up my toolkit.',
+            kicker: 'My production toolkit',
+            title: 'From idea to launch',
+            subtitle: 'The tools I use at each stage of building a digital product.',
+            stages: {
+                structure: 'Lay the foundations',
+                interface: 'Develop',
+                platforms: 'Work with a CMS',
+                automation: 'Automate & explore',
+            },
         },
         contact: {
             title: 'Contact me',

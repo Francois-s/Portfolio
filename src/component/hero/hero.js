@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import './hero.css';
 import { useLanguage } from '../../i18n/LanguageContext';
 import useReveal from '../../hooks/useReveal';
@@ -12,9 +12,29 @@ const scrollToId = (e, id) => {
 const Hero = () => {
     const { t } = useLanguage();
     const contentRef = useReveal({ threshold: 0.05 });
+    const heroRef = useRef(null);
+
+    const handlePointerMove = useCallback((event) => {
+        if (event.pointerType === 'touch' || !heroRef.current) return;
+        const bounds = heroRef.current.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+        const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+        heroRef.current.style.setProperty('--pointer-shift-x', `${(x * 30).toFixed(1)}px`);
+        heroRef.current.style.setProperty('--pointer-shift-y', `${(y * 24).toFixed(1)}px`);
+        heroRef.current.style.setProperty('--ribbon-shift-x', `${(x * -18).toFixed(1)}px`);
+        heroRef.current.style.setProperty('--ribbon-shift-y', `${(y * -14).toFixed(1)}px`);
+    }, []);
+
+    const resetPointer = useCallback(() => {
+        if (!heroRef.current) return;
+        heroRef.current.style.setProperty('--pointer-shift-x', '0px');
+        heroRef.current.style.setProperty('--pointer-shift-y', '0px');
+        heroRef.current.style.setProperty('--ribbon-shift-x', '0px');
+        heroRef.current.style.setProperty('--ribbon-shift-y', '0px');
+    }, []);
 
     return (
-        <section className="hero">
+        <section className="hero" ref={heroRef} onPointerMove={handlePointerMove} onPointerLeave={resetPointer}>
             <div className="hero-glow" aria-hidden="true"></div>
             <svg className="hero-ribbon-scene" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <defs>
