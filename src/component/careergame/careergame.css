@@ -7,19 +7,6 @@
     background: var(--paper-tint);
 }
 
-.career-game::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: -2%;
-    width: 104%;
-    height: 72px;
-    background: linear-gradient(112deg, #0c4a6e 0%, #0f766e 58%, #14b8a6 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 36%, 0 100%);
-    pointer-events: none;
-}
-
 .game-head {
     margin-bottom: 40px;
 }

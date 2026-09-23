@@ -38,8 +38,9 @@ const ProjectVisual = ({ desktop, mobile, tablet, name, projectRef, onPointerMov
         const updateScrollProgress = () => {
             frame = 0;
             const bounds = project.getBoundingClientRect();
-            const travel = window.innerHeight + bounds.height * 0.5;
-            const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.82 - bounds.top) / travel));
+            const travel = bounds.height + window.innerHeight * 0.25;
+            const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.4 - bounds.top) / travel));
+            visual.style.setProperty('--desktop-progress', progress.toFixed(4));
             visual.style.setProperty('--tablet-progress', (progress * 0.24).toFixed(4));
         };
         const scheduleUpdate = () => {

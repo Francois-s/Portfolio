@@ -25,9 +25,10 @@ const skills = [
 ];
 
 const SkillsComponent = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const headRef = useReveal();
     const sectionRef = useRef(null);
+    const dividerRef = useRef(null);
     const ringRefs = useRef([]);
     const valueRefs = useRef([]);
 
@@ -95,56 +96,92 @@ const SkillsComponent = () => {
         return () => ctx.revert();
     }, []);
 
+    useEffect(() => {
+        const divider = dividerRef.current;
+        if (!divider) return undefined;
+
+        let frame = 0;
+        const updateProgress = () => {
+            frame = 0;
+            const bounds = divider.getBoundingClientRect();
+            const progress = Math.max(0, Math.min(1, (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)));
+            divider.style.setProperty('--divider-shift', `${(0.5 - progress) * 18}vw`);
+        };
+        const scheduleUpdate = () => {
+            if (!frame) frame = window.requestAnimationFrame(updateProgress);
+        };
+
+        updateProgress();
+        window.addEventListener('scroll', scheduleUpdate, { passive: true });
+        window.addEventListener('resize', scheduleUpdate);
+        return () => {
+            window.removeEventListener('scroll', scheduleUpdate);
+            window.removeEventListener('resize', scheduleUpdate);
+            if (frame) window.cancelAnimationFrame(frame);
+        };
+    }, []);
+
     return (
-        <section className="skills-container" id="Competences" ref={sectionRef}>
-            <svg width="0" height="0" style={{ position: 'absolute' }}>
-                <defs>
-                    <linearGradient id="skillRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#0c4a6e" />
-                        <stop offset="100%" stopColor="#14b8a6" />
-                    </linearGradient>
-                </defs>
-            </svg>
+        <>
+            <section className="skills-container" id="Competences" ref={sectionRef}>
+                <svg width="0" height="0" style={{ position: 'absolute' }}>
+                    <defs>
+                        <linearGradient id="skillRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#0c4a6e" />
+                            <stop offset="100%" stopColor="#14b8a6" />
+                        </linearGradient>
+                    </defs>
+                </svg>
 
-            <div className="skills-head reveal-on-scroll" ref={headRef}>
-                <h2 className="section-title">{t.skills.title}</h2>
-                <p className="section-subtitle">{t.skills.subtitle}</p>
-            </div>
+                <div className="skills-head reveal-on-scroll" ref={headRef}>
+                    <h2 className="section-title">{t.skills.title}</h2>
+                    <p className="section-subtitle">{t.skills.subtitle}</p>
+                </div>
 
-            <div className="skills-grid">
-                {skills.map((skill, index) => (
-                    <div className="skill-item" key={skill.name}>
-                        <div className="skill-ring">
-                            <svg viewBox="0 0 120 120">
-                                <circle className="ring-track" cx="60" cy="60" r={RADIUS} />
-                                <circle
-                                    className="ring-fill"
-                                    cx="60"
-                                    cy="60"
-                                    r={RADIUS}
-                                    ref={(el) => { if (el) ringRefs.current[index] = el; }}
-                                    style={{ strokeDasharray: CIRCUMFERENCE, strokeDashoffset: CIRCUMFERENCE }}
-                                />
-                            </svg>
-                            <div className="ring-center">
-                                <span className="skill-icon" style={{ color: skill.color }}>
-                                    {skill.icon}
+                <div className="skills-grid">
+                    {skills.map((skill, index) => (
+                        <div className="skill-item" key={skill.name}>
+                            <div className="skill-ring">
+                                <svg viewBox="0 0 120 120">
+                                    <circle className="ring-track" cx="60" cy="60" r={RADIUS} />
+                                    <circle
+                                        className="ring-fill"
+                                        cx="60"
+                                        cy="60"
+                                        r={RADIUS}
+                                        ref={(el) => { if (el) ringRefs.current[index] = el; }}
+                                        style={{ strokeDasharray: CIRCUMFERENCE, strokeDashoffset: CIRCUMFERENCE }}
+                                    />
+                                </svg>
+                                <div className="ring-center">
+                                    <span className="skill-icon" style={{ color: skill.color }}>
+                                        {skill.icon}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="skill-label">
+                                <span className="skill-name">{skill.name}</span>
+                                <span
+                                    className="skill-percent"
+                                    ref={(el) => { if (el) valueRefs.current[index] = el; }}
+                                >
+                                    0%
                                 </span>
                             </div>
                         </div>
-                        <div className="skill-label">
-                            <span className="skill-name">{skill.name}</span>
-                            <span
-                                className="skill-percent"
-                                ref={(el) => { if (el) valueRefs.current[index] = el; }}
-                            >
-                                0%
-                            </span>
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
+            </section>
+            <div className="skills-divider" ref={dividerRef} aria-hidden="true">
+                <div className="skills-divider-track">
+                    {[0, 1, 2].map((copy) => (
+                        <span className="skills-divider-copy" key={copy}>
+                            {language === 'fr' ? 'CONCEVOIR' : 'DESIGN'} <i>✳</i> CODE <i>✳</i> {language === 'fr' ? 'DÉPLOYER' : 'DEPLOY'} <i>✳</i> {language === 'fr' ? 'DONNER VIE' : 'BRING TO LIFE'} <i>✳</i>
+                        </span>
+                    ))}
+                </div>
             </div>
-        </section>
+        </>
     );
 };
 
