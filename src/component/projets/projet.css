@@ -142,14 +142,15 @@
     z-index: 3;
     left: 2%;
     bottom: 4%;
-    width: 29%;
-    height: 74%;
+    width: 42%;
+    height: 56%;
     padding: 5px;
     overflow: hidden;
     border: 4px solid #171d22;
     border-radius: 15px;
     background: #171d22;
     box-shadow: 0 20px 40px rgba(11, 11, 18, 0.25);
+    container-type: size;
     opacity: 0;
     transform: translate3d(-30px, 34px, 28px) rotate(-5deg) scale(0.92);
     transition: opacity 650ms ease, transform 900ms var(--ease-out);
@@ -158,16 +159,24 @@
 .project-tablet-device img {
     display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
     border-radius: 8px;
-    object-fit: cover;
-    object-position: top;
+    transform: translateY(0);
 }
 
 .project-content.is-revealed .project-tablet-device {
     opacity: 1;
     transform: translate3d(var(--base-x), var(--base-y), 28px) rotate(3deg) scale(1);
     transition-delay: 180ms;
+}
+
+.project-tablet-device.is-active img {
+    animation: project-tablet-page-scroll 6.5s cubic-bezier(0.42, 0, 0.58, 1) 350ms infinite alternate;
+}
+
+@keyframes project-tablet-page-scroll {
+    0%, 8% { transform: translateY(0); }
+    92%, 100% { transform: translateY(min(0px, calc(100cqh - 100%))); }
 }
 
 .project-tablet-camera {
@@ -224,7 +233,7 @@
         transform: translate3d(0, 24px, 0) scale(0.98);
     }
     .project-device-caption { font-size: 0.55rem; padding: 5px 8px; }
-    .project-tablet-device { width: 29%; height: 74%; }
+    .project-tablet-device { width: 42%; height: 56%; }
     .project-phone-device { width: 22%; }
     .project-description,
     .project-content:nth-of-type(2n + 3) .project-description {
@@ -243,8 +252,10 @@
     .project-image-container,
     .project-phone-device,
     .project-tablet-device,
+    .project-tablet-device img,
     .project-device-caption,
     .project-image { transition: none; }
+    .project-tablet-device img { animation: none !important; transform: none; }
     .project-content:not(.is-revealed) .project-image-container,
     .project-content:nth-of-type(2n + 3):not(.is-revealed) .project-image-container,
     .project-content:not(.is-revealed) .project-image-desktop,

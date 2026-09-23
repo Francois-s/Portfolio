@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './projet.css'; // Assurez-vous de créer un fichier CSS correspondant
 import m2fctg1 from '../../img/m2fctg-1.png'
 import m2fctg2 from '../../img/m2fctg-2.png'
@@ -26,23 +26,43 @@ import marines2j from '../../img/logo-marine-s2j.png';
 import { useLanguage } from '../../i18n/LanguageContext';
 import useReveal from '../../hooks/useReveal';
 
-const ProjectVisual = ({ desktop, mobile, tablet, name, onPointerMove, onPointerLeave }) => (
-    <div className="project-image-container" onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
-        <span className="project-device-caption project-device-desktop">Version navigateur</span>
-        {tablet && (
-            <div className="project-tablet-device">
-                <span className="project-tablet-camera" aria-hidden="true" />
-                <img src={tablet} alt={`Version tablette de ${name}`} loading="lazy" />
-                <span className="project-tablet-caption">TABLETTE</span>
+const ProjectVisual = ({ desktop, mobile, tablet, name, onPointerMove, onPointerLeave }) => {
+    const tabletRef = useRef(null);
+
+    useEffect(() => {
+        const tabletDevice = tabletRef.current;
+        if (!tabletDevice) return undefined;
+        if (typeof IntersectionObserver === 'undefined') {
+            tabletDevice.classList.add('is-active');
+            return undefined;
+        }
+
+        const observer = new IntersectionObserver(([entry]) => {
+            tabletDevice.classList.toggle('is-active', entry.isIntersecting);
+        }, { threshold: 0.25 });
+
+        observer.observe(tabletDevice);
+        return () => observer.disconnect();
+    }, [tablet]);
+
+    return (
+        <div className="project-image-container" onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
+            <span className="project-device-caption project-device-desktop">Version navigateur</span>
+            {tablet && (
+                <div className="project-tablet-device" ref={tabletRef}>
+                    <span className="project-tablet-camera" aria-hidden="true" />
+                    <img src={tablet} alt={`Version tablette de ${name}`} loading="lazy" />
+                    <span className="project-tablet-caption">TABLETTE</span>
+                </div>
+            )}
+            <div className="project-phone-device">
+                <img src={mobile} alt={`Version mobile de ${name}`} loading="lazy" />
             </div>
-        )}
-        <div className="project-phone-device">
-            <img src={mobile} alt={`Version mobile de ${name}`} loading="lazy" />
+            <span className="project-device-caption project-device-mobile">Version mobile</span>
+            <img src={desktop} alt={`Version ordinateur de ${name}`} className="project-image project-image-desktop" loading="lazy" />
         </div>
-        <span className="project-device-caption project-device-mobile">Version mobile</span>
-        <img src={desktop} alt={`Version ordinateur de ${name}`} className="project-image project-image-desktop" loading="lazy" />
-    </div>
-);
+    );
+};
 
 const ProjectSection = () => {
     const { t } = useLanguage();
