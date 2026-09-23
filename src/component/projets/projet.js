@@ -40,7 +40,7 @@ const ProjectVisual = ({ desktop, mobile, tablet, name, projectRef, onPointerMov
             const bounds = project.getBoundingClientRect();
             const travel = window.innerHeight + bounds.height * 0.5;
             const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.82 - bounds.top) / travel));
-            visual.style.setProperty('--page-progress', progress.toFixed(4));
+            visual.style.setProperty('--tablet-progress', (progress * 0.24).toFixed(4));
         };
         const scheduleUpdate = () => {
             if (!frame) frame = window.requestAnimationFrame(updateScrollProgress);
@@ -57,7 +57,7 @@ const ProjectVisual = ({ desktop, mobile, tablet, name, projectRef, onPointerMov
     }, [projectRef]);
 
     return (
-        <div className="project-image-container" ref={visualRef} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
+        <div className={`project-image-container${tablet ? '' : ' project-image-container-fallback'}`} ref={visualRef} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
             {tablet ? (
                 <div className="project-browser-device">
                     <div className="project-browser-bar" aria-hidden="true"><i /><i /><i /><span>{name}</span></div>
@@ -76,7 +76,7 @@ const ProjectVisual = ({ desktop, mobile, tablet, name, projectRef, onPointerMov
             )}
             <div className="project-phone-device">
                 <div className="project-phone-screen">
-                    <img src={tablet || mobile} alt={`Version mobile de ${name}`} loading="lazy" />
+                    <img src={mobile} alt={`Version mobile de ${name}`} loading="lazy" />
                 </div>
             </div>
             <span className="project-device-caption project-device-mobile">Version mobile</span>

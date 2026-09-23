@@ -180,6 +180,14 @@ const Expertise = () => {
             return () => observer.disconnect();
         }
 
+        const projectsSection = document.getElementById('Projets');
+        const refreshTriggerPositions = () => window.requestAnimationFrame(() => ScrollTrigger.refresh());
+        const layoutObserver = typeof ResizeObserver !== 'undefined' && projectsSection
+            ? new ResizeObserver(refreshTriggerPositions)
+            : null;
+        layoutObserver?.observe(projectsSection);
+        window.addEventListener('load', refreshTriggerPositions, { once: true });
+
         paint(0);
 
         const ctx = gsap.context(() => {
@@ -201,7 +209,11 @@ const Expertise = () => {
             return () => st.kill();
         }, wrap);
 
-        return () => ctx.revert();
+        return () => {
+            layoutObserver?.disconnect();
+            window.removeEventListener('load', refreshTriggerPositions);
+            ctx.revert();
+        };
     }, []);
 
     return (
