@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHtml5, faCss3Alt, faReact, faJsSquare, faWordpress, faPython } from '@fortawesome/free-brands-svg-icons';
 import { SiCplusplus, SiClaude } from 'react-icons/si';
 import { useLanguage } from '../../i18n/LanguageContext';
+import useReveal from '../../hooks/useReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,6 +26,7 @@ const skills = [
 
 const SkillsComponent = () => {
     const { t } = useLanguage();
+    const headRef = useReveal();
     const sectionRef = useRef(null);
     const ringRefs = useRef([]);
     const valueRefs = useRef([]);
@@ -104,7 +106,7 @@ const SkillsComponent = () => {
                 </defs>
             </svg>
 
-            <div className="skills-head">
+            <div className="skills-head reveal-on-scroll" ref={headRef}>
                 <h2 className="section-title">{t.skills.title}</h2>
                 <p className="section-subtitle">{t.skills.subtitle}</p>
             </div>

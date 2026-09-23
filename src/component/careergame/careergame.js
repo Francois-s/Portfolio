@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import './careergame.css';
 import { useLanguage } from '../../i18n/LanguageContext';
+import useReveal from '../../hooks/useReveal';
 
 import logoEpitech from '../../img/logos/epitech.svg';
 import logoBnp from '../../img/logos/bnp-real-estate.svg';
@@ -57,6 +58,9 @@ const BEST_SCORE_KEY = 'portfolio-career-game-best';
 
 const CareerGame = () => {
     const { t } = useLanguage();
+    const headRef = useReveal();
+    const stageRef = useReveal({ threshold: 0.08 });
+    const timelineRef = useReveal();
     const milestones = t.game.milestones;
 
     const sectionRef = useRef(null);
@@ -460,23 +464,23 @@ const CareerGame = () => {
     if (prefersReducedMotion) {
         return (
             <section className="career-game" id="About">
-                <div className="game-head">
+                <div className="game-head reveal-on-scroll" ref={headRef}>
                     <h2 className="section-title">{t.about.title}</h2>
                     <p className="section-subtitle">{t.game.subtitle}</p>
                 </div>
-                <MilestoneList t={t} milestones={milestones} />
+                <div className="reveal-on-scroll" ref={timelineRef}><MilestoneList t={t} milestones={milestones} /></div>
             </section>
         );
     }
 
     return (
         <section className="career-game" id="About" ref={sectionRef}>
-            <div className="game-head">
+            <div className="game-head reveal-on-scroll" ref={headRef}>
                 <h2 className="section-title">{t.about.title}</h2>
                 <p className="section-subtitle">{t.game.subtitle}</p>
             </div>
 
-            <div className="game-stage">
+            <div className="game-stage reveal-on-scroll" ref={stageRef}>
                 <canvas
                     ref={canvasRef}
                     width={CANVAS_W}
@@ -552,7 +556,7 @@ const CareerGame = () => {
                 )}
             </div>
 
-            <details className="game-fallback">
+            <details className="game-fallback reveal-on-scroll" ref={timelineRef}>
                 <summary>{t.game.viewList}</summary>
                 <MilestoneList t={t} milestones={milestones} />
             </details>

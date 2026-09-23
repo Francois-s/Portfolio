@@ -1,6 +1,7 @@
 import React from 'react';
 import './hero.css';
 import { useLanguage } from '../../i18n/LanguageContext';
+import useReveal from '../../hooks/useReveal';
 
 const scrollToId = (e, id) => {
     e.preventDefault();
@@ -10,11 +11,14 @@ const scrollToId = (e, id) => {
 
 const Hero = () => {
     const { t } = useLanguage();
+    const contentRef = useReveal({ threshold: 0.05 });
 
     return (
         <section className="hero">
             <div className="hero-glow" aria-hidden="true"></div>
-            <div className="hero-content">
+            <div className="hero-orbit hero-orbit-one" aria-hidden="true"></div>
+            <div className="hero-orbit hero-orbit-two" aria-hidden="true"></div>
+            <div className="hero-content reveal-on-scroll" ref={contentRef}>
                 <span className="hero-eyebrow">{t.hero.eyebrow}</span>
                 <h1 className="hero-title">
                     {t.hero.titlePre}

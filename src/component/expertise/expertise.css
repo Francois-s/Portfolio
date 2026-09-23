@@ -75,6 +75,12 @@
     padding: 44px 40px;
     box-shadow: 0 20px 45px rgba(20, 184, 166, 0.18);
     will-change: transform, opacity;
+    transition: box-shadow 350ms ease, border-color 350ms ease;
+}
+
+.expertise-card:hover {
+    border-color: rgba(20, 184, 166, 0.38);
+    box-shadow: 0 28px 65px rgba(20, 184, 166, 0.24);
 }
 
 .expertise-glyph {
@@ -91,7 +97,10 @@
     font-size: 1.15rem;
     margin-bottom: 24px;
     box-shadow: 0 12px 24px var(--accent-glow);
+    transition: transform 500ms var(--ease-out);
 }
+
+.expertise-card:hover .expertise-glyph { transform: rotate(-7deg) scale(1.06); }
 
 .expertise-tag {
     display: flex;
@@ -129,9 +138,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .expertise-glyph {
-        animation: none;
-    }
+    .expertise-glyph { animation: none; transition: none; }
+    .expertise-card { transition: none; }
 }
 
 @media (max-width: 767px) {

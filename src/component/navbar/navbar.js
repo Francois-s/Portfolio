@@ -5,6 +5,7 @@ import { useLanguage } from '../../i18n/LanguageContext';
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('Projets');
     const { language, toggleLanguage, t } = useLanguage();
 
     const NAV_LINKS = [
@@ -21,6 +22,23 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
+    useEffect(() => {
+        const sections = ['Projets', 'Expertise', 'Competences', 'About', 'contact']
+            .map((id) => document.getElementById(id))
+            .filter(Boolean);
+        if (!sections.length || typeof IntersectionObserver === 'undefined') return undefined;
+
+        const observer = new IntersectionObserver((entries) => {
+            const visible = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+            if (visible) setActiveSection(visible.target.id);
+        }, { rootMargin: '-25% 0px -60% 0px', threshold: [0, 0.15, 0.4, 0.7] });
+
+        sections.forEach((section) => observer.observe(section));
+        return () => observer.disconnect();
+    }, []);
+
     const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
     return (
@@ -30,7 +48,7 @@ export default function Navbar() {
                     <ul className="nav-links">
                         {NAV_LINKS.map((link) => (
                             <li key={link.href} className="nav-elem">
-                                <a href={link.href} onClick={closeMenu}>{link.label}</a>
+                                <a href={link.href} onClick={closeMenu} aria-current={activeSection === link.href.slice(1) ? 'location' : undefined}>{link.label}</a>
                             </li>
                         ))}
                     </ul>

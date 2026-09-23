@@ -2,20 +2,23 @@ import React from 'react';
 import './contactcard.css';
 import profilePhoto from '../../img/profile-photo.jpg';
 import { useLanguage } from '../../i18n/LanguageContext';
+import useReveal from '../../hooks/useReveal';
 
 const EMAIL = 'fsergent.m@gmail.com';
 
 const ContactCard = () => {
     const { t } = useLanguage();
+    const headRef = useReveal();
+    const cardRef = useReveal({ threshold: 0.2 });
 
     return (
         <section className="contact-card-section" id="contact">
-            <div className="contact-head">
+            <div className="contact-head reveal-on-scroll" ref={headRef}>
                 <h2 className="section-title">{t.contact.title}</h2>
                 <p className="section-subtitle">{t.contact.subtitle}</p>
             </div>
 
-            <div className="contact-card-wrap">
+            <div className="contact-card-wrap reveal-on-scroll" ref={cardRef}>
                 <div className="contact-card">
                     <div className="contact-card-face contact-card-front">
                         <span className="wave"></span>

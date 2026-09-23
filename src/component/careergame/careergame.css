@@ -14,6 +14,12 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 20px 50px rgba(11, 11, 18, 0.22);
+    transition: transform 500ms var(--ease-out), box-shadow 500ms ease;
+}
+
+.game-stage:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 70px rgba(11, 11, 18, 0.27);
 }
 
 .game-canvas {
@@ -212,6 +218,18 @@
     gap: 4px;
     min-height: 76px;
     justify-content: center;
+    transition: border-color 300ms ease, transform 300ms var(--ease-out), box-shadow 300ms ease;
+}
+
+.game-latest:not(:has(.game-latest-empty)) {
+    border-color: rgba(20, 184, 166, 0.35);
+    box-shadow: 0 10px 30px rgba(20, 184, 166, 0.1);
+    animation: milestoneArrive 500ms var(--ease-out) both;
+}
+
+@keyframes milestoneArrive {
+    from { opacity: 0.55; transform: translateY(8px) scale(0.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .game-latest-year {
@@ -311,4 +329,10 @@
     .game-overlay h3 {
         font-size: 1.2rem;
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .game-stage, .game-latest { transition: none; }
+    .game-stage:hover { transform: none; }
+    .game-latest:not(:has(.game-latest-empty)) { animation: none; }
 }

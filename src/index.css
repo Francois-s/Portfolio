@@ -7,6 +7,7 @@
   --paper: #ffffff;
   --paper-tint: #f7f6fb;
   --font-heading: 'Poppins', 'Segoe UI', sans-serif;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -139,4 +140,35 @@ code {
   color: rgba(11, 11, 18, 0.62);
   font-size: 1.05rem;
   margin: 0;
+}
+
+/* Shared scroll reveals. Content stays visible when JS/observers are unavailable. */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
 }

@@ -20,7 +20,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: transform 350ms var(--ease-out);
 }
+
+.skill-item:hover { transform: translateY(-7px); }
+.skill-item:hover .skill-icon { transform: scale(1.13) rotate(-5deg); }
 
 .skill-ring {
     position: relative;
@@ -58,6 +62,7 @@
 
 .skill-icon {
     display: inline-flex;
+    transition: transform 350ms var(--ease-out);
 }
 
 .skill-icon svg {
@@ -110,4 +115,9 @@
         width: 100px;
         height: 100px;
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skill-item, .skill-icon { transition: none; }
+    .skill-item:hover { transform: none; }
 }

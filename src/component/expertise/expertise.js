@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './expertise.css';
 import { useLanguage } from '../../i18n/LanguageContext';
+import useReveal from '../../hooks/useReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +24,7 @@ const MAX_DEPTH = 4; // cards deeper than this fade out of the visible stack
 
 const Expertise = () => {
     const { t } = useLanguage();
+    const headRef = useReveal();
     const wrapRef = useRef(null);
     const stackRef = useRef(null);
     const progressFillRef = useRef(null);
@@ -109,7 +111,7 @@ const Expertise = () => {
     return (
         <section className="expertise" id="Expertise">
             <div className="expertise-pin-wrap" ref={wrapRef}>
-                <div className="expertise-head">
+                <div className="expertise-head reveal-on-scroll" ref={headRef}>
                     <h2 className="section-title">{t.expertise.title}</h2>
                     <p className="section-subtitle">{t.expertise.subtitle}</p>
                 </div>
