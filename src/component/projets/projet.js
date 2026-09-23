@@ -26,30 +26,41 @@ import marines2j from '../../img/logo-marine-s2j.png';
 import { useLanguage } from '../../i18n/LanguageContext';
 import useReveal from '../../hooks/useReveal';
 
-const ProjectVisual = ({ desktop, mobile, tablet, name, onPointerMove, onPointerLeave }) => {
-    const tabletRef = useRef(null);
+const ProjectVisual = ({ desktop, mobile, tablet, name, projectRef, onPointerMove, onPointerLeave }) => {
+    const visualRef = useRef(null);
 
     useEffect(() => {
-        const tabletDevice = tabletRef.current;
-        if (!tabletDevice) return undefined;
-        if (typeof IntersectionObserver === 'undefined') {
-            tabletDevice.classList.add('is-active');
-            return undefined;
-        }
+        const visual = visualRef.current;
+        const project = projectRef.current;
+        if (!visual || !project) return undefined;
 
-        const observer = new IntersectionObserver(([entry]) => {
-            tabletDevice.classList.toggle('is-active', entry.isIntersecting);
-        }, { threshold: 0.25 });
+        let frame = 0;
+        const updateScrollProgress = () => {
+            frame = 0;
+            const bounds = project.getBoundingClientRect();
+            const travel = window.innerHeight + bounds.height * 0.5;
+            const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.82 - bounds.top) / travel));
+            visual.style.setProperty('--page-progress', progress.toFixed(4));
+        };
+        const scheduleUpdate = () => {
+            if (!frame) frame = window.requestAnimationFrame(updateScrollProgress);
+        };
 
-        observer.observe(tabletDevice);
-        return () => observer.disconnect();
-    }, [tablet]);
+        updateScrollProgress();
+        window.addEventListener('scroll', scheduleUpdate, { passive: true });
+        window.addEventListener('resize', scheduleUpdate);
+        return () => {
+            window.removeEventListener('scroll', scheduleUpdate);
+            window.removeEventListener('resize', scheduleUpdate);
+            if (frame) window.cancelAnimationFrame(frame);
+        };
+    }, [projectRef]);
 
     return (
-        <div className="project-image-container" onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
+        <div className="project-image-container" ref={visualRef} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
             <span className="project-device-caption project-device-desktop">Version navigateur</span>
             {tablet && (
-                <div className="project-tablet-device" ref={tabletRef}>
+                <div className="project-tablet-device">
                     <span className="project-tablet-camera" aria-hidden="true" />
                     <img src={tablet} alt={`Version tablette de ${name}`} loading="lazy" />
                     <span className="project-tablet-caption">TABLETTE</span>
@@ -97,52 +108,46 @@ const ProjectSection = () => {
                 <p className="section-subtitle">{t.projects.subtitle}</p>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[0]} style={{ '--reveal-delay': '0ms' }}>
-                <ProjectVisual desktop={m2fctg1} mobile={m2fctg2} tablet={tabletM2fctg} name="M2 FCTG" onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={m2fctg1} mobile={m2fctg2} tablet={tabletM2fctg} name="M2 FCTG" projectRef={projectRefs[0]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoM2fctg} alt="M2 FCTG Logo" className="project-logo" />
                     <p>{t.projects.m2fctg}</p>
-                    <a href="https://m2fctg.fr/" target="_blank" rel="noreferrer" className="btn btn-primary">{t.projects.viewMore}</a>
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[1]} style={{ '--reveal-delay': '70ms' }}>
-                <ProjectVisual desktop={versuscoins1} mobile={versuscoins2} tablet={tabletVersuscoins} name="Versus Coins" onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={versuscoins1} mobile={versuscoins2} tablet={tabletVersuscoins} name="Versus Coins" projectRef={projectRefs[1]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoVersusCoins} alt="Versus Coins Logo" className="project-logo" />
                     <p>{t.projects.versuscoins}</p>
-                    <a href="https://versuscoins.com/" target="_blank" rel="noreferrer" className="btn btn-primary">{t.projects.viewMore}</a>
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[2]} style={{ '--reveal-delay': '0ms' }}>
-                <ProjectVisual desktop={projet11} mobile={projet12} tablet={tabletBooki} name="Booki" onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={projet11} mobile={projet12} tablet={tabletBooki} name="Booki" projectRef={projectRefs[2]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoBooki} alt="Booki Logo" className="project-logo" />
                     <p>{t.projects.booki}</p>
 
-                    <a href="https://francois-s.github.io/P3---Booki-/" target="_blank" rel="noreferrer" className="btn btn-primary">{t.projects.viewMore}</a>
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[3]} style={{ '--reveal-delay': '70ms' }}>
-                <ProjectVisual desktop={projet21} mobile={projet22} tablet={tabletOhmyfood} name="Ohmyfood" onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={projet21} mobile={projet22} tablet={tabletOhmyfood} name="Ohmyfood" projectRef={projectRefs[3]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoHomyFood} alt="ohmyfood Logo" className="project-logo" id="ohmyfood" />
                     <p>{t.projects.ohmyfood}</p>
-                    <a href="https://francois-s.github.io/P4-ohmyfood/" target="_blank" rel="noreferrer" className="btn btn-primary">{t.projects.viewMore}</a>
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[4]} style={{ '--reveal-delay': '0ms' }}>
-                <ProjectVisual desktop={projet31} mobile={projet32} name="Kasa" onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={projet31} mobile={projet32} name="Kasa" projectRef={projectRefs[4]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoKasa} alt="Kasa Logo" className="project-logo" />
                     <p>{t.projects.kasa}</p>
-                    <a href="https://francois-s.github.io/P8-Kasa/" target="_blank" rel="noreferrer" className="btn btn-primary">{t.projects.viewMore}</a>
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[5]} style={{ '--reveal-delay': '70ms' }}>
-                <ProjectVisual desktop={projet41} mobile={projet42} tablet={tabletMarineS2J} name="Marine S2J" onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={projet41} mobile={projet42} tablet={tabletMarineS2J} name="Marine S2J" projectRef={projectRefs[5]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={marines2j} alt="marines2j Logo" className="project-logo" id='marines2j' />
                     <p>{t.projects.marines2j}</p>
-                    <a href="https://francois-s.github.io/Marines2j/index.html" target="_blank" rel="noreferrer" className="btn btn-primary">{t.projects.viewMore}</a>
                 </div>
             </div>
         </div>
