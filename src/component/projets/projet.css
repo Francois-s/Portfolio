@@ -159,6 +159,8 @@
 
 .project-browser-screen { display: flex; justify-content: center; align-items: flex-start; }
 
+.project-phone-screen { border-radius: inherit; }
+
 .project-browser-screen img,
 .project-phone-screen img {
     display: block;
@@ -181,6 +183,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+    border-radius: inherit;
 }
 
 .project-phone-device {
@@ -193,9 +196,9 @@
     overflow: hidden;
     padding: 0;
     border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
+    border-radius: 14% / 6%;
+    background: #171d22;
+    box-shadow: 0 16px 30px rgba(11, 11, 18, 0.3);
     opacity: 0;
     transform: translate3d(32px, 30px, 40px) rotate(6deg) scale(0.9);
     transition: opacity 600ms ease, transform 850ms var(--ease-out);

@@ -1,19 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 import './projet.css'; // Assurez-vous de créer un fichier CSS correspondant
 import m2fctg1 from '../../img/m2fctg-1.png'
-import m2fctg2 from '../../img/m2fctg-2.png'
 import versuscoins1 from '../../img/versuscoins-1.png'
 import versuscoins2 from '../../img/versuscoins-2.png'
 import projet11 from '../../img/projet1-1.png'
 import projet12 from '../../img/projet1-2.png'
 import projet21 from '../../img/projet2-1.png'
-import projet22 from '../../img/projet2-2.png'
 import projet31 from '../../img/projet3-1.png'
 import projet32 from '../../img/projet3-2.png'
 import projet41 from '../../img/projet4-1.png'
 import projet42 from '../../img/projet4-2.png'
-import tabletM2fctg from '../../img/tablet-m2fctg.png';
 import desktopM2fctg from '../../img/tablet-m2fctg-desktop.png';
+import mobileM2fctg from '../../img/m2fctg-mobile-real.png';
+import tabletM2fctgReal from '../../img/m2fctg-tablet-real.png';
+import mobileOhmyfood from '../../img/ohmyfood-mobile-real.png';
 import tabletVersuscoins from '../../img/tablet-versuscoins.png';
 import tabletBooki from '../../img/tablet-booki.png';
 import tabletOhmyfood from '../../img/tablet-ohmyfood.png';
@@ -27,8 +27,9 @@ import marines2j from '../../img/logo-marine-s2j.png';
 import { useLanguage } from '../../i18n/LanguageContext';
 import useReveal from '../../hooks/useReveal';
 
-const ProjectVisual = ({ desktop, mobile, tablet, browserImage = tablet, name, desktopScale = 1, projectRef, onPointerMove, onPointerLeave }) => {
+const ProjectVisual = ({ desktop, mobile, tablet, browserImage = tablet, name, desktopScale = 1, desktopScrollFactor = 1, tabletScrollFactor = 0.24, eager = false, projectRef, onPointerMove, onPointerLeave }) => {
     const visualRef = useRef(null);
+    const imageLoading = eager ? 'eager' : 'lazy';
 
     useEffect(() => {
         const visual = visualRef.current;
@@ -41,8 +42,8 @@ const ProjectVisual = ({ desktop, mobile, tablet, browserImage = tablet, name, d
             const bounds = project.getBoundingClientRect();
             const travel = bounds.height + window.innerHeight * 0.25;
             const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.4 - bounds.top) / travel));
-            visual.style.setProperty('--desktop-progress', progress.toFixed(4));
-            visual.style.setProperty('--tablet-progress', (progress * 0.24).toFixed(4));
+            visual.style.setProperty('--desktop-progress', (progress * desktopScrollFactor).toFixed(4));
+            visual.style.setProperty('--tablet-progress', (progress * tabletScrollFactor).toFixed(4));
         };
         const scheduleUpdate = () => {
             if (!frame) frame = window.requestAnimationFrame(updateScrollProgress);
@@ -56,29 +57,29 @@ const ProjectVisual = ({ desktop, mobile, tablet, browserImage = tablet, name, d
             window.removeEventListener('resize', scheduleUpdate);
             if (frame) window.cancelAnimationFrame(frame);
         };
-    }, [projectRef]);
+    }, [projectRef, desktopScrollFactor, tabletScrollFactor]);
 
     return (
         <div className={`project-image-container${tablet ? '' : ' project-image-container-fallback'}`} style={{ '--desktop-image-width': `${desktopScale * 100}%` }} ref={visualRef} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
             {tablet ? (
                 <div className="project-browser-device">
                     <div className="project-browser-bar" aria-hidden="true"><i /><i /><i /><span>{name}</span></div>
-                    <div className="project-browser-screen"><img src={browserImage} alt={`Version ordinateur de ${name}`} loading="lazy" /></div>
+                    <div className="project-browser-screen"><img src={browserImage} alt={`Version ordinateur de ${name}`} loading={imageLoading} /></div>
                 </div>
             ) : (
-                <img src={desktop} alt={`Version ordinateur de ${name}`} className="project-image project-image-desktop" loading="lazy" />
+                <img src={desktop} alt={`Version ordinateur de ${name}`} className="project-image project-image-desktop" loading={imageLoading} />
             )}
             <span className="project-device-caption project-device-desktop">Version navigateur</span>
             {tablet && (
                 <div className="project-tablet-device">
                     <span className="project-tablet-camera" aria-hidden="true" />
-                    <img src={tablet} alt={`Version tablette de ${name}`} loading="lazy" />
+                    <img src={tablet} alt={`Version tablette de ${name}`} loading={imageLoading} />
                     <span className="project-tablet-caption">TABLETTE</span>
                 </div>
             )}
             <div className="project-phone-device">
                 <div className="project-phone-screen">
-                    <img src={mobile} alt={`Version mobile de ${name}`} loading="lazy" />
+                    <img src={mobile} alt={`Version mobile de ${name}`} loading={imageLoading} />
                 </div>
             </div>
             <span className="project-device-caption project-device-mobile">Version mobile</span>
@@ -119,7 +120,7 @@ const ProjectSection = () => {
                 <p className="section-subtitle">{t.projects.subtitle}</p>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[0]} style={{ '--reveal-delay': '0ms' }}>
-                <ProjectVisual desktop={m2fctg1} mobile={m2fctg2} tablet={tabletM2fctg} browserImage={desktopM2fctg} name="M2 FCTG" projectRef={projectRefs[0]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={m2fctg1} mobile={mobileM2fctg} tablet={tabletM2fctgReal} browserImage={desktopM2fctg} name="M2 FCTG" desktopScrollFactor={1 / 3} tabletScrollFactor={0.08} eager projectRef={projectRefs[0]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoM2fctg} alt="M2 FCTG Logo" className="project-logo" />
                     <p>{t.projects.m2fctg}</p>
@@ -141,7 +142,7 @@ const ProjectSection = () => {
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[3]} style={{ '--reveal-delay': '70ms' }}>
-                <ProjectVisual desktop={projet21} mobile={projet22} tablet={tabletOhmyfood} name="Ohmyfood" projectRef={projectRefs[3]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={projet21} mobile={mobileOhmyfood} tablet={tabletOhmyfood} name="Ohmyfood" projectRef={projectRefs[3]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoHomyFood} alt="ohmyfood Logo" className="project-logo" id="ohmyfood" />
                     <p>{t.projects.ohmyfood}</p>
@@ -155,7 +156,7 @@ const ProjectSection = () => {
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[5]} style={{ '--reveal-delay': '70ms' }}>
-                <ProjectVisual desktop={projet41} mobile={projet42} tablet={tabletMarineS2J} name="Marine S2J" projectRef={projectRefs[5]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={projet41} mobile={projet42} tablet={tabletMarineS2J} name="Marine S2J" tabletScrollFactor={0.72} eager projectRef={projectRefs[5]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={marines2j} alt="marines2j Logo" className="project-logo" id='marines2j' />
                     <p>{t.projects.marines2j}</p>

@@ -13,7 +13,8 @@ const ScrollDivider = ({ className = '', phrase, marker = '✳' }) => {
             frame = 0;
             const bounds = divider.getBoundingClientRect();
             const progress = Math.max(0, Math.min(1, (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)));
-            divider.style.setProperty('--divider-shift', `${(0.5 - progress) * 18}vw`);
+            const direction = divider.classList.contains('scroll-divider--contact') ? -1 : 1;
+            divider.style.setProperty('--divider-shift', `${(0.5 - progress) * 18 * direction}vw`);
         };
         const scheduleUpdate = () => {
             if (!frame) frame = window.requestAnimationFrame(updatePosition);
