@@ -13,6 +13,7 @@ import projet32 from '../../img/projet3-2.png'
 import projet41 from '../../img/projet4-1.png'
 import projet42 from '../../img/projet4-2.png'
 import tabletM2fctg from '../../img/tablet-m2fctg.png';
+import desktopM2fctg from '../../img/tablet-m2fctg-desktop.png';
 import tabletVersuscoins from '../../img/tablet-versuscoins.png';
 import tabletBooki from '../../img/tablet-booki.png';
 import tabletOhmyfood from '../../img/tablet-ohmyfood.png';
@@ -26,7 +27,7 @@ import marines2j from '../../img/logo-marine-s2j.png';
 import { useLanguage } from '../../i18n/LanguageContext';
 import useReveal from '../../hooks/useReveal';
 
-const ProjectVisual = ({ desktop, mobile, tablet, name, desktopScale = 1, projectRef, onPointerMove, onPointerLeave }) => {
+const ProjectVisual = ({ desktop, mobile, tablet, browserImage = tablet, name, desktopScale = 1, projectRef, onPointerMove, onPointerLeave }) => {
     const visualRef = useRef(null);
 
     useEffect(() => {
@@ -62,7 +63,7 @@ const ProjectVisual = ({ desktop, mobile, tablet, name, desktopScale = 1, projec
             {tablet ? (
                 <div className="project-browser-device">
                     <div className="project-browser-bar" aria-hidden="true"><i /><i /><i /><span>{name}</span></div>
-                    <div className="project-browser-screen"><img src={tablet} alt={`Version ordinateur de ${name}`} loading="lazy" /></div>
+                    <div className="project-browser-screen"><img src={browserImage} alt={`Version ordinateur de ${name}`} loading="lazy" /></div>
                 </div>
             ) : (
                 <img src={desktop} alt={`Version ordinateur de ${name}`} className="project-image project-image-desktop" loading="lazy" />
@@ -118,7 +119,7 @@ const ProjectSection = () => {
                 <p className="section-subtitle">{t.projects.subtitle}</p>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[0]} style={{ '--reveal-delay': '0ms' }}>
-                <ProjectVisual desktop={m2fctg1} mobile={m2fctg2} tablet={tabletM2fctg} name="M2 FCTG" projectRef={projectRefs[0]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={m2fctg1} mobile={m2fctg2} tablet={tabletM2fctg} browserImage={desktopM2fctg} name="M2 FCTG" projectRef={projectRefs[0]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoM2fctg} alt="M2 FCTG Logo" className="project-logo" />
                     <p>{t.projects.m2fctg}</p>
