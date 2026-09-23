@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './scrolldivider.css';
 
-const ScrollDivider = ({ className = '', phrase }) => {
+const ScrollDivider = ({ className = '', phrase, marker = '✳' }) => {
     const dividerRef = useRef(null);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const ScrollDivider = ({ className = '', phrase }) => {
             <div className="scroll-divider-track">
                 {[0, 1, 2, 3, 4, 5].map((copy) => (
                     <span className="scroll-divider-copy" key={copy}>
-                        {phrase} <i>✳</i>
+                        {phrase} <i>{marker}</i>
                     </span>
                 ))}
             </div>

@@ -172,7 +172,7 @@
     max-width: 100%;
     height: auto;
     flex: none;
-    transform: translateY(calc(max(0px, 100cqh - 100%) * var(--desktop-progress)));
+    transform: translateY(calc((100cqh - 100%) * var(--desktop-progress)));
     will-change: transform;
 }
 

@@ -69,6 +69,17 @@
 
 .scroll-divider--contact .scroll-divider-copy i { color: #f5a76e; }
 
+.scroll-divider--contact::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 12%;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(245, 167, 110, .7) 50%, transparent);
+    pointer-events: none;
+}
+
 @media (max-width: 560px) {
     .scroll-divider--skills { height: 86px; }
     .scroll-divider--contact { height: 80px; }

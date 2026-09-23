@@ -118,7 +118,7 @@ const ProjectSection = () => {
                 <p className="section-subtitle">{t.projects.subtitle}</p>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[0]} style={{ '--reveal-delay': '0ms' }}>
-                <ProjectVisual desktop={m2fctg1} mobile={m2fctg2} tablet={tabletM2fctg} name="M2 FCTG" desktopScale={0.78} projectRef={projectRefs[0]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={m2fctg1} mobile={m2fctg2} tablet={tabletM2fctg} name="M2 FCTG" projectRef={projectRefs[0]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoM2fctg} alt="M2 FCTG Logo" className="project-logo" />
                     <p>{t.projects.m2fctg}</p>

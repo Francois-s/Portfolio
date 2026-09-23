@@ -17,6 +17,7 @@ const ContactCard = () => {
         <ScrollDivider
             className="scroll-divider--contact"
             phrase={language === 'fr' ? 'À PROPOS · ÉCHANGER · FAIRE ÉQUIPE' : 'ABOUT · CONNECT · COLLABORATE'}
+            marker="↗"
         />
         <section className="contact-card-section" id="contact">
             <div className="contact-head reveal-on-scroll" ref={headRef}>
