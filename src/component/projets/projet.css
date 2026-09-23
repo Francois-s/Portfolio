@@ -1,4 +1,5 @@
 .project-section {
+    background: #fff;
     text-align: center;
     font-family: 'Arial', sans-serif;
     padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 6vw, 6rem);
@@ -31,17 +32,28 @@
     max-width: 40%;
     overflow: hidden;
     border-radius: 22px;
-    background: var(--paper-tint);
+    background: #fff;
     box-shadow: 0 22px 60px rgba(11, 11, 18, 0.14);
     cursor: pointer;
     isolation: isolate;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    --base-x: 0px;
+    --base-y: 0px;
+    --second-x: 12px;
+    --second-y: 14px;
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
 }
 
 .project-image {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 900ms var(--ease-out), filter 700ms ease;
+    position: relative;
+    z-index: 2;
+    transform: translate3d(var(--base-x), var(--base-y), 18px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+    transition: transform 800ms var(--ease-out), filter 700ms ease;
     backface-visibility: hidden;
 }
 
@@ -55,18 +67,19 @@
     position: absolute;
     top: 0;
     left: 0;
-    transform: translateX(100%);
-    transition: transform 800ms var(--ease-out);
+    z-index: 1;
+    transform: translate3d(var(--second-x), var(--second-y), -18px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(0.96);
+    transition: transform 900ms var(--ease-out);
 }
 
-.project-image-container:hover .project-image,
-.project-image-container:focus-within .project-image {
-    transform: translateX(-100%);
+.project-image-container:hover .project-image:not(.project-image-top),
+.project-image-container:focus-within .project-image:not(.project-image-top) {
+    transform: translate3d(var(--base-x), var(--base-y), 28px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(1.015);
 }
 
 .project-image-container:hover .project-image-top,
 .project-image-container:focus-within .project-image-top {
-    transform: translateX(0);
+    transform: translate3d(var(--second-x), var(--second-y), -8px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(0.96);
 }
 
 .project-image-container:hover .project-image:not(.project-image-top),
@@ -171,8 +184,8 @@
 
 @media (prefers-reduced-motion: reduce) {
     .project-image, .project-image-top { transition: none; }
-    .project-image-container:hover .project-image,
-    .project-image-container:focus-within .project-image { transform: none; }
+    .project-image-container:hover .project-image:not(.project-image-top),
+    .project-image-container:focus-within .project-image:not(.project-image-top) { transform: none; }
     .project-image-container:hover .project-image-top,
-    .project-image-container:focus-within .project-image-top { transform: translateX(100%); }
+    .project-image-container:focus-within .project-image-top { transform: translate(12px, 14px) scale(0.96); }
 }

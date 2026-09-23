@@ -22,6 +22,41 @@
     animation: heroGlowDrift 12s ease-in-out infinite alternate;
 }
 
+.hero-ribbon-scene {
+    position: absolute;
+    z-index: 0;
+    inset: -12% -18%;
+    width: 136%;
+    height: 124%;
+    overflow: visible;
+    opacity: 0.88;
+    perspective: 1000px;
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 28%, rgba(0, 0, 0, 0.8) 54%, transparent 82%);
+    mask-image: radial-gradient(ellipse at center, #000 28%, rgba(0, 0, 0, 0.8) 54%, transparent 82%);
+}
+
+.hero-ribbon { fill: none; transform-box: fill-box; transform-origin: center; }
+.hero-ribbon-back { stroke: url(#heroRibbonA); stroke-width: 76; opacity: 0.55; }
+.hero-ribbon-front { animation: ribbonSway 16s ease-in-out infinite alternate; }
+.hero-ribbon-front path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.hero-ribbon-front .ribbon-main { stroke: url(#heroRibbonA); stroke-width: 58; opacity: 0.46; }
+.hero-ribbon-front .ribbon-second { stroke: url(#heroRibbonB); stroke-width: 34; opacity: 0.4; }
+.hero-ribbon-front .ribbon-thread {
+    stroke: rgba(204, 251, 241, 0.8);
+    stroke-width: 2;
+    stroke-dasharray: 4 18;
+    opacity: 0.72;
+    animation: ribbonFlow 9s linear infinite;
+}
+
+@keyframes ribbonSway {
+    from { transform: translate3d(-1.5%, 1%, 0) rotateX(4deg) rotateZ(-1deg) scale(1); }
+    to { transform: translate3d(1.5%, -1%, 0) rotateX(-4deg) rotateZ(1deg) scale(1.04); }
+}
+
+@keyframes ribbonFlow { to { stroke-dashoffset: -220; } }
+
 .hero-orbit {
     position: absolute;
     left: 50%;
@@ -140,9 +175,10 @@
     .hero {
         padding: 140px 20px 80px;
     }
+    .hero-ribbon-scene { inset: 0 -72%; width: 244%; height: 100%; opacity: 0.55; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hero-glow, .hero-orbit { animation: none; }
+    .hero-glow, .hero-orbit, .hero-ribbon-front, .hero-ribbon-front .ribbon-thread { animation: none; }
     .hero-eyebrow, .hero-title, .hero-subtitle, .hero-actions { animation: none; }
 }

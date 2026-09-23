@@ -26,6 +26,27 @@ const ProjectSection = () => {
     const headRef = useReveal();
     const projectRefs = [useReveal(), useReveal(), useReveal(), useReveal(), useReveal(), useReveal()];
 
+    const moveMockup = (event) => {
+        const bounds = event.currentTarget.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+        const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+        const style = event.currentTarget.style;
+        style.setProperty('--base-x', `${x * -12}px`);
+        style.setProperty('--base-y', `${y * -10}px`);
+        style.setProperty('--second-x', `${x * 22 + 12}px`);
+        style.setProperty('--second-y', `${y * 18 + 14}px`);
+        style.setProperty('--tilt-x', `${y * -7}deg`);
+        style.setProperty('--tilt-y', `${x * 9}deg`);
+    };
+
+    const resetMockup = (event) => {
+        ['--base-x', '--base-y', '--tilt-x', '--tilt-y'].forEach((property) => {
+            event.currentTarget.style.removeProperty(property);
+        });
+        event.currentTarget.style.setProperty('--second-x', '12px');
+        event.currentTarget.style.setProperty('--second-y', '14px');
+    };
+
     return (
         <div className="project-section" id="Projets">
             <div className="project-head reveal-on-scroll" ref={headRef}>
@@ -33,7 +54,7 @@ const ProjectSection = () => {
                 <p className="section-subtitle">{t.projects.subtitle}</p>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[0]} style={{ '--reveal-delay': '0ms' }}>
-                <div className="project-image-container">
+                <div className="project-image-container" onPointerMove={moveMockup} onPointerLeave={resetMockup}>
                     <img src={m2fctg1} alt="Aperçu du site M2 FCTG" className="project-image" loading="lazy" />
                     <img src={m2fctg2} alt="Deuxième aperçu du site M2 FCTG" className="project-image project-image-top" loading="lazy" />
                 </div>
@@ -44,7 +65,7 @@ const ProjectSection = () => {
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[1]} style={{ '--reveal-delay': '70ms' }}>
-                <div className="project-image-container">
+                <div className="project-image-container" onPointerMove={moveMockup} onPointerLeave={resetMockup}>
                     <img src={versuscoins1} alt="Aperçu de Versus Coins" className="project-image" loading="lazy" />
                     <img src={versuscoins2} alt="Deuxième aperçu de Versus Coins" className="project-image project-image-top" loading="lazy" />
                 </div>
@@ -55,7 +76,7 @@ const ProjectSection = () => {
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[2]} style={{ '--reveal-delay': '0ms' }}>
-                <div className="project-image-container">
+                <div className="project-image-container" onPointerMove={moveMockup} onPointerLeave={resetMockup}>
                     <img src={projet11} alt="Aperçu de Booki" className="project-image" loading="lazy" />
                     <img src={projet12} alt="Deuxième aperçu de Booki" className="project-image project-image-top" loading="lazy" />
                 </div>
@@ -67,7 +88,7 @@ const ProjectSection = () => {
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[3]} style={{ '--reveal-delay': '70ms' }}>
-                <div className="project-image-container">
+                <div className="project-image-container" onPointerMove={moveMockup} onPointerLeave={resetMockup}>
                     <img src={projet21} alt="Aperçu de Ohmyfood" className="project-image" loading="lazy" />
                     <img src={projet22} alt="Deuxième aperçu de Ohmyfood" className="project-image project-image-top" loading="lazy" />
                 </div>
@@ -78,7 +99,7 @@ const ProjectSection = () => {
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[4]} style={{ '--reveal-delay': '0ms' }}>
-                <div className="project-image-container">
+                <div className="project-image-container" onPointerMove={moveMockup} onPointerLeave={resetMockup}>
                     <img src={projet31} alt="Aperçu de Kasa" className="project-image" loading="lazy" />
                     <img src={projet32} alt="Deuxième aperçu de Kasa" className="project-image project-image-top" loading="lazy" />
                 </div>
@@ -89,7 +110,7 @@ const ProjectSection = () => {
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[5]} style={{ '--reveal-delay': '70ms' }}>
-                <div className="project-image-container">
+                <div className="project-image-container" onPointerMove={moveMockup} onPointerLeave={resetMockup}>
                     <img src={projet41} alt="Aperçu du site Marine S2J" className="project-image" loading="lazy" />
                     <img src={projet42} alt="Deuxième aperçu du site Marine S2J" className="project-image project-image-top" loading="lazy" />
                 </div>        <div className="project-description">

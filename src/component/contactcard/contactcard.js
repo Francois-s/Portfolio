@@ -28,9 +28,11 @@ const ContactCard = () => {
                             <span className="contact-card-avatar">
                                 <img src={profilePhoto} alt={t.about.name} />
                             </span>
-                            <h3 className="contact-card-name">{t.about.name}</h3>
-                            <p className="contact-card-role">{t.contact.cardRole}</p>
-                            <span className="contact-card-location">{t.contact.cardLocation}</span>
+                            <div className="contact-card-identity">
+                                <h3 className="contact-card-name">{t.about.name}</h3>
+                                <p className="contact-card-role">{t.contact.cardRole}</p>
+                                <span className="contact-card-location">{t.contact.cardLocation}</span>
+                            </div>
                         </div>
                     </div>
                     <div className="contact-card-face contact-card-back">

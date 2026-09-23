@@ -45,8 +45,8 @@ const OBSTACLE_MAX_GAP = 700;
 
 const FIRST_MILESTONE_WORLD_X = 120;
 const MILESTONE_WORLD_INTERVAL = 900;
-const MILESTONE_BANNER_W = 230;
-const MILESTONE_BANNER_H = 128;
+const MILESTONE_BANNER_W = 260;
+const MILESTONE_BANNER_H = 146;
 // Banners scroll in the slow parallax layer (bgX, ~0.45x world speed) so they
 // stay readable; the finish line must wait long enough in worldX terms for the
 // last banner to actually be on screen, or the ending arrives before it's seen.
@@ -198,9 +198,58 @@ const CareerGame = () => {
             ctx.fillStyle = skyGrad;
             ctx.fillRect(0, 0, CANVAS_W, GROUND_Y);
 
+            const worldBg = g ? g.bgX : 0;
+            const sunGlow = ctx.createRadialGradient(720, 82, 4, 720, 82, 150);
+            sunGlow.addColorStop(0, 'rgba(94,234,212,0.22)');
+            sunGlow.addColorStop(1, 'rgba(94,234,212,0)');
+            ctx.fillStyle = sunGlow;
+            ctx.fillRect(560, 0, 320, 220);
+
+            // Distant landscape layers make the world feel like it is moving.
+            const drawRidge = (factor, baseY, color, phase) => {
+                const segment = 300;
+                const offset = (worldBg * factor) % segment;
+                const heights = [42, 78, 36, 98, 54, 84, 32, 72];
+                ctx.beginPath();
+                ctx.moveTo(-segment, GROUND_Y);
+                for (let i = -1; i < 6; i++) {
+                    const x = i * segment - offset;
+                    const height = heights[(i + phase + heights.length * 2) % heights.length];
+                    ctx.lineTo(x, baseY);
+                    ctx.lineTo(x + segment * 0.48, baseY - height);
+                    ctx.lineTo(x + segment, baseY);
+                }
+                ctx.lineTo(CANVAS_W + segment, GROUND_Y);
+                ctx.closePath();
+                ctx.fillStyle = color;
+                ctx.fill();
+            };
+            drawRidge(0.1, GROUND_Y, '#124442', 0);
+            drawRidge(0.2, GROUND_Y, '#0e3837', 3);
+
+            const skylineOffset = (worldBg * 0.32) % 150;
+            ctx.fillStyle = 'rgba(6, 28, 29, 0.8)';
+            for (let i = -1; i < 9; i++) {
+                const x = i * 150 - skylineOffset;
+                const buildingWidth = 42 + (i % 3) * 12;
+                const buildingHeight = 28 + ((i * 17 + 100) % 56);
+                ctx.fillRect(x, GROUND_Y - buildingHeight, buildingWidth, buildingHeight);
+                ctx.fillStyle = 'rgba(94,234,212,0.16)';
+                for (let row = 0; row < 3; row++) {
+                    ctx.fillRect(x + 9, GROUND_Y - buildingHeight + 9 + row * 12, 4, 4);
+                    ctx.fillRect(x + 23, GROUND_Y - buildingHeight + 9 + row * 12, 4, 4);
+                }
+                ctx.fillStyle = 'rgba(6, 28, 29, 0.8)';
+            }
+
             // ground
             ctx.fillStyle = 'rgba(255,255,255,0.05)';
             ctx.fillRect(0, GROUND_Y, CANVAS_W, CANVAS_H - GROUND_Y);
+            const groundOffset = (g ? g.worldX : 0) % 76;
+            ctx.fillStyle = 'rgba(94,234,212,0.22)';
+            for (let x = -76; x < CANVAS_W; x += 76) {
+                ctx.fillRect(x - groundOffset, GROUND_Y + 23, 32, 2);
+            }
             ctx.strokeStyle = 'rgba(94,234,212,0.45)';
             ctx.lineWidth = 2;
             ctx.beginPath();
@@ -226,7 +275,7 @@ const CareerGame = () => {
             g.banners.forEach((b) => {
                 const screenX = b.worldX - g.bgX;
                 if (screenX < -MILESTONE_BANNER_W || screenX > CANVAS_W + MILESTONE_BANNER_W) return;
-                const by = 22;
+                const by = 18;
                 ctx.save();
                 ctx.globalAlpha = 0.96;
                 ctx.fillStyle = 'rgba(255,255,255,0.96)';
@@ -239,7 +288,7 @@ const CareerGame = () => {
 
                 const img = imagesRef.current[b.milestone.logo];
                 const logoBoxW = MILESTONE_BANNER_W - 36;
-                const logoBoxH = 54;
+                const logoBoxH = 62;
                 const logoBoxX = screenX + 18;
                 const logoBoxY = by + 16;
                 if (img && img.complete && img.naturalWidth > 0) {

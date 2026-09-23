@@ -16,6 +16,32 @@ const Hero = () => {
     return (
         <section className="hero">
             <div className="hero-glow" aria-hidden="true"></div>
+            <svg className="hero-ribbon-scene" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                    <linearGradient id="heroRibbonA" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#14b8a6" />
+                        <stop offset="48%" stopColor="#60a5fa" />
+                        <stop offset="100%" stopColor="#0c4a6e" />
+                    </linearGradient>
+                    <linearGradient id="heroRibbonB" x1="0" y1="1" x2="1" y2="0">
+                        <stop offset="0%" stopColor="#0c4a6e" />
+                        <stop offset="55%" stopColor="#2dd4bf" />
+                        <stop offset="100%" stopColor="#a5f3fc" />
+                    </linearGradient>
+                    <filter id="heroRibbonGlow" x="-30%" y="-50%" width="160%" height="200%">
+                        <feGaussianBlur stdDeviation="18" />
+                    </filter>
+                </defs>
+                <g className="hero-ribbon hero-ribbon-back" filter="url(#heroRibbonGlow)" opacity=".72">
+                    <path d="M-120 490 C90 250 230 120 405 240 S680 600 855 440 1060 140 1330 210" />
+                    <path d="M-100 250 C100 420 280 570 455 430 S710 100 900 260 1100 540 1320 440" />
+                </g>
+                <g className="hero-ribbon hero-ribbon-front">
+                    <path className="ribbon-main" d="M-120 490 C90 250 230 120 405 240 S680 600 855 440 1060 140 1330 210" />
+                    <path className="ribbon-second" d="M-100 250 C100 420 280 570 455 430 S710 100 900 260 1100 540 1320 440" />
+                    <path className="ribbon-thread" d="M-80 370 C110 180 260 190 420 330 S700 500 875 350 1100 210 1300 330" />
+                </g>
+            </svg>
             <div className="hero-orbit hero-orbit-one" aria-hidden="true"></div>
             <div className="hero-orbit hero-orbit-two" aria-hidden="true"></div>
             <div className="hero-content reveal-on-scroll" ref={contentRef}>
