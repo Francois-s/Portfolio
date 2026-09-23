@@ -2,6 +2,22 @@
     background: var(--paper, #fff);
     padding: 100px 24px 120px;
     text-align: center;
+    position: relative;
+    isolation: isolate;
+    margin-bottom: 0;
+}
+
+.skills-container::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: calc(100% - 2px);
+    left: 0;
+    width: 100%;
+    height: clamp(76px, 10vw, 150px);
+    background: linear-gradient(112deg, #0c4a6e 0%, #0f766e 58%, #14b8a6 100%);
+    clip-path: polygon(0 0, 100% 34%, 100% 100%, 0 66%);
+    pointer-events: none;
 }
 
 .skills-head {

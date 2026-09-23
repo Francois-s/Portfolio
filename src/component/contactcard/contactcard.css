@@ -1,6 +1,26 @@
 .contact-card-section {
     padding: clamp(72px, 9vw, 120px) clamp(18px, 4vw, 48px) clamp(84px, 10vw, 132px);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--paper, #fff);
+}
+
+.contact-card-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(82vw, 1040px);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(12, 74, 110, .26), rgba(20, 184, 166, .55), transparent);
+    transform: translateX(-50%) scaleX(.35);
+    transform-origin: center;
+    transition: transform 1.2s var(--ease-out);
+}
+
+.contact-card-section.is-revealed::before {
+    transform: translateX(-50%) scaleX(1);
 }
 
 .contact-head {
@@ -13,6 +33,15 @@
     justify-content: center;
     width: min(100%, 420px);
     margin: 0 auto;
+}
+
+.contact-card-wrap.reveal-on-scroll {
+    transition: opacity 950ms var(--ease-out), transform 950ms var(--ease-out);
+    transform: translate3d(0, 48px, 0) scale(.96);
+}
+
+.contact-card-wrap.reveal-on-scroll.is-revealed {
+    transform: translate3d(0, 0, 0) scale(1);
 }
 
 .contact-card {
@@ -226,4 +255,6 @@
     .contact-card { transition: none; }
     .contact-card-avatar img { transition: none; }
     .wave { animation: none; }
+    .contact-card-wrap.reveal-on-scroll { transform: none; }
+    .contact-card-section::before { transition: none; transform: translateX(-50%); }
 }

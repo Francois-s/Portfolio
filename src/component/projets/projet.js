@@ -58,6 +58,14 @@ const ProjectVisual = ({ desktop, mobile, tablet, name, projectRef, onPointerMov
 
     return (
         <div className="project-image-container" ref={visualRef} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
+            {tablet ? (
+                <div className="project-browser-device">
+                    <div className="project-browser-bar" aria-hidden="true"><i /><i /><i /><span>{name}</span></div>
+                    <div className="project-browser-screen"><img src={tablet} alt={`Version ordinateur de ${name}`} loading="lazy" /></div>
+                </div>
+            ) : (
+                <img src={desktop} alt={`Version ordinateur de ${name}`} className="project-image project-image-desktop" loading="lazy" />
+            )}
             <span className="project-device-caption project-device-desktop">Version navigateur</span>
             {tablet && (
                 <div className="project-tablet-device">
@@ -67,10 +75,11 @@ const ProjectVisual = ({ desktop, mobile, tablet, name, projectRef, onPointerMov
                 </div>
             )}
             <div className="project-phone-device">
-                <img src={mobile} alt={`Version mobile de ${name}`} loading="lazy" />
+                <div className="project-phone-screen">
+                    <img src={tablet || mobile} alt={`Version mobile de ${name}`} loading="lazy" />
+                </div>
             </div>
             <span className="project-device-caption project-device-mobile">Version mobile</span>
-            <img src={desktop} alt={`Version ordinateur de ${name}`} className="project-image project-image-desktop" loading="lazy" />
         </div>
     );
 };

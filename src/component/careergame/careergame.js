@@ -594,7 +594,7 @@ const CareerGame = () => {
 
     if (prefersReducedMotion) {
         return (
-            <section className="career-game" id="About">
+        <section className="career-game about-section" id="About">
                 <div className="game-head reveal-on-scroll" ref={headRef}>
                     <h2 className="section-title">{t.about.title}</h2>
                     <p className="section-subtitle">{t.game.subtitle}</p>
@@ -605,7 +605,7 @@ const CareerGame = () => {
     }
 
     return (
-        <section className="career-game" id="About" ref={sectionRef}>
+        <section className="career-game about-section" id="About" ref={sectionRef}>
             <div className="game-head reveal-on-scroll" ref={headRef}>
                 <h2 className="section-title">{t.about.title}</h2>
                 <p className="section-subtitle">{t.game.subtitle}</p>

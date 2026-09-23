@@ -1,6 +1,23 @@
 .career-game {
     padding: 100px 24px 120px;
     text-align: center;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--paper-tint);
+}
+
+.career-game::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: -2%;
+    width: 104%;
+    height: 72px;
+    background: linear-gradient(112deg, #0c4a6e 0%, #0f766e 58%, #14b8a6 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 36%, 0 100%);
+    pointer-events: none;
 }
 
 .game-head {
@@ -15,6 +32,15 @@
     overflow: hidden;
     box-shadow: 0 20px 50px rgba(11, 11, 18, 0.22);
     transition: transform 500ms var(--ease-out), box-shadow 500ms ease;
+}
+
+.career-game.is-revealed .game-stage {
+    animation: about-stage-arrive 900ms var(--ease-out) both;
+}
+
+@keyframes about-stage-arrive {
+    from { opacity: 0; transform: translateY(34px) scale(0.975); filter: blur(5px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
 .game-stage:hover {
@@ -66,6 +92,7 @@
     .confetti-piece {
         display: none;
     }
+    .career-game.is-revealed .game-stage { animation: none; }
 }
 
 .game-overlay h3 {
