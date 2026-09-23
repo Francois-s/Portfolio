@@ -17,7 +17,7 @@ const DOMAIN_META = [
     { id: 'seo', command: 'npm run seo:inspect -- --semantic --metadata' },
 ];
 
-const SCROLL_PER_CARD = 350; // px of scroll dedicated to each card's entrance
+const SCROLL_PER_CARD = 190; // px of scroll dedicated to each card's entrance
 const STACK_STEP_Y = 14; // px the stack shifts back per depth level
 const STACK_STEP_SCALE = 0.045; // scale reduction per depth level
 const MAX_DEPTH = 4; // cards deeper than this fade out of the visible stack
@@ -149,11 +149,35 @@ const Expertise = () => {
             stack.classList.toggle('has-current', raw > 0);
         };
 
-        if (prefersReducedMotion || isNarrow) {
+        if (prefersReducedMotion) {
             stack.classList.add('is-static-stack');
             wrap.classList.add('is-static-expertise');
             gsap.set(cards, { clearProps: 'all' });
+            cards.forEach((card) => card.classList.add('is-visible'));
             return;
+        }
+
+        if (isNarrow) {
+            stack.classList.add('is-static-stack');
+            wrap.classList.add('is-static-expertise');
+            gsap.set(cards, { clearProps: 'all' });
+
+            if (typeof IntersectionObserver === 'undefined') {
+                cards.forEach((card) => card.classList.add('is-visible'));
+                return;
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+
+            cards.forEach((card) => observer.observe(card));
+            return () => observer.disconnect();
         }
 
         paint(0);
@@ -163,7 +187,7 @@ const Expertise = () => {
                 trigger: wrap,
                 start: 'top top',
                 end: () => `+=${count * SCROLL_PER_CARD}`,
-                scrub: 0.5,
+                scrub: 0.15,
                 pin: true,
                 invalidateOnRefresh: true,
                 onUpdate: (self) => paint(self.progress),

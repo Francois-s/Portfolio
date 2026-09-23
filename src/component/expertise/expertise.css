@@ -52,8 +52,6 @@
     position: relative;
     inset: auto;
     min-height: 250px;
-    opacity: 1 !important;
-    transform: none !important;
 }
 
 .expertise-head {
@@ -174,9 +172,9 @@
 .terminal-prompt { flex: none; color: #5eead4; font: 700 1.2rem 'Consolas', monospace; }
 .terminal-command { display: block; max-width: 100%; overflow: hidden; color: #e7f5f3; font: 500 clamp(.62rem, 1.3vw, .91rem) 'Consolas', 'Courier New', monospace; }
 .terminal-caret { color: #2dd4bf; font-size: .9rem; animation: terminalBlink 800ms steps(2, start) infinite; }
-.expertise-card.is-current .terminal-command { animation: commandType 1200ms steps(34, end) both; }
-.expertise-card.is-current .terminal-result { animation: terminalOutput 650ms 650ms var(--ease-out) both; }
-.expertise-card.is-current .terminal-diagram * { animation: diagramTrace 1100ms 650ms ease both; }
+.expertise-card.is-current .terminal-command { animation: commandType 550ms steps(34, end) both; }
+.expertise-card.is-current .terminal-result { animation: terminalOutput 320ms 150ms var(--ease-out) both; }
+.expertise-card.is-current .terminal-diagram * { animation: diagramTrace 550ms 120ms ease both; }
 
 @keyframes commandType { from { max-width: 0; } to { max-width: 100%; } }
 @keyframes terminalOutput { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
@@ -228,7 +226,16 @@
     .terminal-titlebar { height: 42px; padding: 0 12px; font-size: .62rem; }
     .expertise-stack.is-static-stack { width: auto; max-width: none; height: auto; display: flex; flex-direction: column; gap: 12px; padding: 14px; }
     .expertise-stack.is-static-stack .terminal-welcome { display: none; }
-    .expertise-stack.is-static-stack .expertise-card { position: relative; inset: auto; min-height: 265px; padding: 20px 10px; opacity: 1 !important; transform: none !important; }
+    .expertise-stack.is-static-stack .expertise-card {
+        position: relative;
+        inset: auto;
+        min-height: 265px;
+        padding: 20px 10px;
+        opacity: 0;
+        transform: translateY(22px) scale(0.98);
+        transition: opacity 380ms ease, transform 420ms var(--ease-out);
+    }
+    .expertise-stack.is-static-stack .expertise-card.is-visible { opacity: 1; transform: none; }
     .expertise-stack.is-static-stack .expertise-card .terminal-result-copy h3,
     .expertise-stack.is-static-stack .expertise-card .terminal-result-copy p { display: block; }
     .terminal-result { grid-template-columns: 90px minmax(0, 1fr); gap: 14px; padding: 22px 0 14px; }
@@ -243,6 +250,7 @@
 
 @media (prefers-reduced-motion: reduce) {
     .expertise-card, .terminal-caret { animation: none !important; }
+    .expertise-pin-wrap.is-static-expertise .expertise-card { opacity: 1 !important; transform: none !important; transition: none !important; }
     .expertise-card.is-current .terminal-result { animation: none; }
     .expertise-card.is-current .terminal-command { max-width: 100%; animation: none; }
 }
