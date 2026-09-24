@@ -28,7 +28,7 @@
     align-self: center;
     overflow: visible;
     background: #fff;
-    cursor: pointer;
+    cursor: default;
     isolation: isolate;
     perspective: 1200px;
     transform-style: preserve-3d;
@@ -277,7 +277,6 @@
 .project-logo { width: 100px; height: auto; margin-bottom: 10px; }
 .project-description { max-width: 760px; width: 100%; align-self: center; text-align: center; }
 .project-description .btn { margin-top: 0.5rem; }
-.project-image-container:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 4px; }
 .project-description h3 { font-size: 2rem; margin-bottom: 1rem; }
 #marines2j { border-radius: 20px; }
 .project-description p { font-size: 1.2rem; margin-bottom: 2rem; }
@@ -309,11 +308,16 @@
 }
 
 @media (max-width: 480px) {
-    .project-image-container { width: calc(100vw - 2rem); }
-    .project-browser-device { width: 82%; padding: 18px 5px 6px; border-width: 3px; border-radius: 12px; }
+    .project-image-container {
+        width: calc(100vw - 2rem);
+        height: clamp(265px, 78vw, 320px);
+        margin-bottom: 0.5rem;
+    }
+    .project-browser-device { width: 94%; margin: 0 auto; padding: 18px 5px 6px; border-width: 3px; border-radius: 12px; }
     .project-browser-bar { height: 15px; }
-    .project-tablet-device { width: 34%; height: 39%; padding: 3px; border-width: 3px; border-radius: 10px; }
-    .project-phone-device { width: 18%; right: 0; }
+    .project-tablet-device { width: 43%; height: 34%; left: 2%; bottom: 1%; padding: 3px; border-width: 3px; border-radius: 10px; }
+    .project-phone-device { width: 23%; right: 3%; bottom: 1%; }
+    .project-device-caption { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

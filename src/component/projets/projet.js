@@ -27,7 +27,7 @@ import marines2j from '../../img/logo-marine-s2j.png';
 import { useLanguage } from '../../i18n/LanguageContext';
 import useReveal from '../../hooks/useReveal';
 
-const ProjectVisual = ({ desktop, mobile, tablet, browserImage = tablet, name, desktopScale = 1, desktopScrollFactor = 1, tabletScrollFactor = 0.24, eager = false, projectRef, onPointerMove, onPointerLeave }) => {
+const ProjectVisual = ({ desktop, mobile, tablet, browserImage = tablet, name, desktopScale = 1, desktopScrollFactor = 1, tabletScrollFactor = 0.24, desktopStart = 0, tabletStart = 0, eager = false, projectRef, onPointerMove, onPointerLeave }) => {
     const visualRef = useRef(null);
     const imageLoading = eager ? 'eager' : 'lazy';
 
@@ -42,8 +42,8 @@ const ProjectVisual = ({ desktop, mobile, tablet, browserImage = tablet, name, d
             const bounds = project.getBoundingClientRect();
             const travel = bounds.height + window.innerHeight * 0.25;
             const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.4 - bounds.top) / travel));
-            visual.style.setProperty('--desktop-progress', (progress * desktopScrollFactor).toFixed(4));
-            visual.style.setProperty('--tablet-progress', (progress * tabletScrollFactor).toFixed(4));
+            visual.style.setProperty('--desktop-progress', Math.min(1, desktopStart + progress * desktopScrollFactor).toFixed(4));
+            visual.style.setProperty('--tablet-progress', Math.min(1, tabletStart + progress * tabletScrollFactor).toFixed(4));
         };
         const scheduleUpdate = () => {
             if (!frame) frame = window.requestAnimationFrame(updateScrollProgress);
@@ -57,7 +57,7 @@ const ProjectVisual = ({ desktop, mobile, tablet, browserImage = tablet, name, d
             window.removeEventListener('resize', scheduleUpdate);
             if (frame) window.cancelAnimationFrame(frame);
         };
-    }, [projectRef, desktopScrollFactor, tabletScrollFactor]);
+    }, [projectRef, desktopStart, tabletStart, desktopScrollFactor, tabletScrollFactor]);
 
     return (
         <div className={`project-image-container${tablet ? '' : ' project-image-container-fallback'}`} style={{ '--desktop-image-width': `${desktopScale * 100}%` }} ref={visualRef} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
@@ -156,7 +156,7 @@ const ProjectSection = () => {
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[5]} style={{ '--reveal-delay': '70ms' }}>
-                <ProjectVisual desktop={projet41} mobile={projet42} tablet={tabletMarineS2J} name="Marine S2J" tabletScrollFactor={0.72} eager projectRef={projectRefs[5]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={projet41} mobile={projet42} tablet={tabletMarineS2J} name="Marine S2J" desktopStart={0.52} desktopScrollFactor={0.22} tabletStart={0.54} tabletScrollFactor={0.2} eager projectRef={projectRefs[5]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={marines2j} alt="marines2j Logo" className="project-logo" id='marines2j' />
                     <p>{t.projects.marines2j}</p>
