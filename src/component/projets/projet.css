@@ -280,7 +280,6 @@
 .project-description h3 { font-size: 2rem; margin-bottom: 1rem; }
 #marines2j { border-radius: 20px; }
 .project-description p { font-size: 1.2rem; margin-bottom: 2rem; }
-#ohmyfood { width: 150px; }
 
 @media (max-width: 768px) {
     .project-content {

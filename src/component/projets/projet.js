@@ -5,7 +5,6 @@ import versuscoins1 from '../../img/versuscoins-1.png'
 import versuscoins2 from '../../img/versuscoins-2.png'
 import projet11 from '../../img/projet1-1.png'
 import projet12 from '../../img/projet1-2.png'
-import projet21 from '../../img/projet2-1.png'
 import projet31 from '../../img/projet3-1.png'
 import projet32 from '../../img/projet3-2.png'
 import projet41 from '../../img/projet4-1.png'
@@ -13,15 +12,12 @@ import projet42 from '../../img/projet4-2.png'
 import desktopM2fctg from '../../img/tablet-m2fctg-desktop.png';
 import mobileM2fctg from '../../img/m2fctg-mobile-real.png';
 import tabletM2fctgReal from '../../img/m2fctg-tablet-real.png';
-import mobileOhmyfood from '../../img/ohmyfood-mobile-real.png';
 import tabletVersuscoins from '../../img/tablet-versuscoins.png';
 import tabletBooki from '../../img/tablet-booki.png';
-import tabletOhmyfood from '../../img/tablet-ohmyfood.png';
 import tabletMarineS2J from '../../img/tablet-marines2j.png';
 import logoM2fctg from '../../img/logo-m2fctg.png';
 import logoVersusCoins from '../../img/logo-versuscoins.png';
 import logoKasa from '../../img/logo-kasa.png';
-import logoHomyFood from '../../img/logo-ohmyfood.png';
 import logoBooki from '../../img/logo-booki.png';
 import marines2j from '../../img/logo-marine-s2j.png';
 import { useLanguage } from '../../i18n/LanguageContext';
@@ -90,7 +86,7 @@ const ProjectVisual = ({ desktop, mobile, tablet, browserImage = tablet, name, d
 const ProjectSection = () => {
     const { t } = useLanguage();
     const headRef = useReveal();
-    const projectRefs = [useReveal(), useReveal(), useReveal(), useReveal(), useReveal(), useReveal()];
+    const projectRefs = [useReveal(), useReveal(), useReveal(), useReveal(), useReveal()];
 
     const moveMockup = (event) => {
         const bounds = event.currentTarget.getBoundingClientRect();
@@ -142,21 +138,14 @@ const ProjectSection = () => {
                 </div>
             </div>
             <div className="project-content reveal-on-scroll" ref={projectRefs[3]} style={{ '--reveal-delay': '70ms' }}>
-                <ProjectVisual desktop={projet21} mobile={mobileOhmyfood} tablet={tabletOhmyfood} name="Ohmyfood" projectRef={projectRefs[3]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
-                <div className="project-description">
-                    <img src={logoHomyFood} alt="ohmyfood Logo" className="project-logo" id="ohmyfood" />
-                    <p>{t.projects.ohmyfood}</p>
-                </div>
-            </div>
-            <div className="project-content reveal-on-scroll" ref={projectRefs[4]} style={{ '--reveal-delay': '0ms' }}>
-                <ProjectVisual desktop={projet31} mobile={projet32} name="Kasa" projectRef={projectRefs[4]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+                <ProjectVisual desktop={projet31} mobile={projet32} name="Kasa" projectRef={projectRefs[3]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={logoKasa} alt="Kasa Logo" className="project-logo" />
                     <p>{t.projects.kasa}</p>
                 </div>
             </div>
-            <div className="project-content reveal-on-scroll" ref={projectRefs[5]} style={{ '--reveal-delay': '70ms' }}>
-                <ProjectVisual desktop={projet41} mobile={projet42} tablet={tabletMarineS2J} name="Marine S2J" desktopStart={0.52} desktopScrollFactor={0.22} tabletStart={0.54} tabletScrollFactor={0.2} eager projectRef={projectRefs[5]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
+            <div className="project-content reveal-on-scroll" ref={projectRefs[4]} style={{ '--reveal-delay': '0ms' }}>
+                <ProjectVisual desktop={projet41} mobile={projet42} tablet={tabletMarineS2J} name="Marine S2J" desktopStart={0.52} desktopScrollFactor={0.22} tabletStart={0.54} tabletScrollFactor={0.2} eager projectRef={projectRefs[4]} onPointerMove={moveMockup} onPointerLeave={resetMockup} />
                 <div className="project-description">
                     <img src={marines2j} alt="marines2j Logo" className="project-logo" id='marines2j' />
                     <p>{t.projects.marines2j}</p>
