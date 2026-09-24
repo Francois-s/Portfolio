@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Portfolio/static/css/main.5ec32528.css",
-    "main.js": "/Portfolio/static/js/main.051ae3a9.js",
+    "main.css": "/Portfolio/static/css/main.de716bf4.css",
+    "main.js": "/Portfolio/static/js/main.326ce646.js",
     "static/media/tablet-m2fctg-desktop.png": "/Portfolio/static/media/tablet-m2fctg-desktop.61c56e6de62c604d4a39.png",
     "static/media/m2fctg-1.png": "/Portfolio/static/media/m2fctg-1.ed4d177773dcce662989.png",
     "static/media/projet3-1.png": "/Portfolio/static/media/projet3-1.bf3fecef4eed779ef909.png",
@@ -305,11 +305,11 @@
     "static/media/bd.svg": "/Portfolio/static/media/bd.0ad8c443ef4d47ea0497.svg",
     "static/media/pe.svg": "/Portfolio/static/media/pe.d64e9732fcaa8f765994.svg",
     "static/media/id.svg": "/Portfolio/static/media/id.f624e2c8444a7794b357.svg",
-    "main.5ec32528.css.map": "/Portfolio/static/css/main.5ec32528.css.map",
-    "main.051ae3a9.js.map": "/Portfolio/static/js/main.051ae3a9.js.map"
+    "main.de716bf4.css.map": "/Portfolio/static/css/main.de716bf4.css.map",
+    "main.326ce646.js.map": "/Portfolio/static/js/main.326ce646.js.map"
   },
   "entrypoints": [
-    "static/css/main.5ec32528.css",
-    "static/js/main.051ae3a9.js"
+    "static/css/main.de716bf4.css",
+    "static/js/main.326ce646.js"
   ]
 }
