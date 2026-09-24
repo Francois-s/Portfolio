@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Portfolio/static/css/main.de716bf4.css",
-    "main.js": "/Portfolio/static/js/main.326ce646.js",
+    "main.css": "/Portfolio/static/css/main.4f34b057.css",
+    "main.js": "/Portfolio/static/js/main.38aa687b.js",
     "static/media/tablet-m2fctg-desktop.png": "/Portfolio/static/media/tablet-m2fctg-desktop.61c56e6de62c604d4a39.png",
     "static/media/m2fctg-1.png": "/Portfolio/static/media/m2fctg-1.ed4d177773dcce662989.png",
     "static/media/projet3-1.png": "/Portfolio/static/media/projet3-1.bf3fecef4eed779ef909.png",
@@ -9,19 +9,16 @@
     "static/media/projet4-1.png": "/Portfolio/static/media/projet4-1.67938cb41f4336df2535.png",
     "static/media/projet3-2.png": "/Portfolio/static/media/projet3-2.c7d9cb60fbc2a3704cae.png",
     "static/media/projet4-2.png": "/Portfolio/static/media/projet4-2.ba79d63ec07ab08f47b8.png",
-    "static/media/projet2-1.png": "/Portfolio/static/media/projet2-1.f46e0db5421f997c122c.png",
     "static/media/projet1-1.png": "/Portfolio/static/media/projet1-1.20134ce99781e28dd6a2.png",
     "static/media/m2fctg-mobile-real.png": "/Portfolio/static/media/m2fctg-mobile-real.7813438e62080ec0d0c6.png",
     "static/media/tablet-versuscoins.png": "/Portfolio/static/media/tablet-versuscoins.f8db565f256a0ccbbfff.png",
     "static/media/versuscoins-2.png": "/Portfolio/static/media/versuscoins-2.6e70c5e2e49710f9bc16.png",
     "static/media/projet1-2.png": "/Portfolio/static/media/projet1-2.a83558dbc3a95bf03e11.png",
     "static/media/tablet-marines2j.png": "/Portfolio/static/media/tablet-marines2j.a9281cf09d85becdf66e.png",
-    "static/media/tablet-ohmyfood.png": "/Portfolio/static/media/tablet-ohmyfood.e2d90abc3e5fa4d58c9d.png",
     "static/media/tablet-booki.png": "/Portfolio/static/media/tablet-booki.e23d46b1e996bc3b6916.png",
     "static/media/rs.svg": "/Portfolio/static/media/rs.099fd9d4031b066a2362.svg",
     "static/media/sh-ac.svg": "/Portfolio/static/media/sh-ac.12e47249c910761e397d.svg",
     "static/media/bo.svg": "/Portfolio/static/media/bo.b0f50bc8035200c269f1.svg",
-    "static/media/ohmyfood-mobile-real.png": "/Portfolio/static/media/ohmyfood-mobile-real.ee31873f271625ddb9b7.png",
     "static/media/m2fctg-tablet-real.png": "/Portfolio/static/media/m2fctg-tablet-real.987a845cc8b4a5474b05.png",
     "static/media/logo-m2fctg.png": "/Portfolio/static/media/logo-m2fctg.0baa5ac35ffeed113eb5.png",
     "static/media/mx.svg": "/Portfolio/static/media/mx.b2ba7a3bf813d512f807.svg",
@@ -305,11 +302,11 @@
     "static/media/bd.svg": "/Portfolio/static/media/bd.0ad8c443ef4d47ea0497.svg",
     "static/media/pe.svg": "/Portfolio/static/media/pe.d64e9732fcaa8f765994.svg",
     "static/media/id.svg": "/Portfolio/static/media/id.f624e2c8444a7794b357.svg",
-    "main.de716bf4.css.map": "/Portfolio/static/css/main.de716bf4.css.map",
-    "main.326ce646.js.map": "/Portfolio/static/js/main.326ce646.js.map"
+    "main.4f34b057.css.map": "/Portfolio/static/css/main.4f34b057.css.map",
+    "main.38aa687b.js.map": "/Portfolio/static/js/main.38aa687b.js.map"
   },
   "entrypoints": [
-    "static/css/main.de716bf4.css",
-    "static/js/main.326ce646.js"
+    "static/css/main.4f34b057.css",
+    "static/js/main.38aa687b.js"
   ]
 }
